@@ -37,6 +37,7 @@ public class Fox extends Predator
     public void giveBirth(List<Animal> newPredator){
         // New foxes are born into adjacent locations.
         // Get a list of adjacent free locations.
+        //
         Field field = getField();
         Location location = getLocation();
         Object foundAnimal = null;
@@ -89,9 +90,9 @@ public class Fox extends Predator
     
     public void toggleAsleep(Time time){
         if (time.timeOfDay()){
-            isAsleep = true;
-        } else {
             isAsleep = false;
+        } else {
+            isAsleep = true;
         }
     }
 }

@@ -8,7 +8,7 @@ import java.awt.Color;
  * A simple predator-prey simulator, based on a rectangular field
  * containing rabbits and foxes.
  * 
- * @author David J. Barnes and Michael Kölling
+ * @author David J. Barnes and Michael KÃ¶lling
  * @version 2016.02.29 (2)
  */
 public class Simulator
@@ -70,7 +70,7 @@ public class Simulator
         view.setColor(Hawk.class, Color.orange);
         view.setColor(Owl.class, Color.red);
         view.setColor(Fox.class, Color.black);
-        view.setColor(Fox.class, Color.pink);
+        view.setColor(Squirrel.class, Color.pink);
 
         // Setup a valid starting point.
         reset();
@@ -181,11 +181,11 @@ public class Simulator
                         animals.add(prey);
                     } else if(prey1 == 1){
                         Location location = new Location(row, col);
-                        Prey prey = new Squirrel(false, field, location, preyGender);
+                        Prey prey = new Rabbit(false, field, location, preyGender);
                         animals.add(prey);
                     } else{
                         Location location = new Location(row, col);
-                        Prey prey = new Rabbit(false, field, location, preyGender);
+                        Prey prey = new Squirrel(false, field, location, preyGender);
                         animals.add(prey);
                     }
                 }

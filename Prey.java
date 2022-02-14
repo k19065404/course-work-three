@@ -6,7 +6,7 @@ import java.awt.Color;
  * A simple model of a rabbit.
  * Rabbits age, move, breed, and die.
  * 
- * @author David J. Barnes and Michael Kölling
+ * @author David J. Barnes and Michael KÃ¶lling
  * @version 2016.02.29 (2)
  */
 public abstract class Prey extends Animal

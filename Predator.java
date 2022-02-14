@@ -7,7 +7,7 @@ import java.awt.Color;
  * A simple model of a fox.
  * Foxes age, move, eat rabbits, and die.
  * 
- * @author David J. Barnes and Michael Kölling
+ * @author David J. Barnes and Michael KÃ¶lling
  * @version 2016.02.29 (2)
  */
 public abstract class Predator extends Animal
