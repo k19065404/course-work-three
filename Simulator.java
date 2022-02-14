@@ -29,6 +29,12 @@ public class Simulator
     private Field field;
     // The current step of the simulation.
     private int step;
+    // object of time class.
+    private Time time = new Time();
+    
+    // current time in string formate.
+    private String currentTime;
+    
     // A graphical view of the simulation.
     private SimulatorView view;
     
@@ -100,6 +106,8 @@ public class Simulator
     public void simulateOneStep()
     {
         step++;
+        time.incrimentMinutes();
+        currentTime = time.getTime();
 
         // Provide space for newborn animals.
         List<Animal> newAnimals = new ArrayList<>();        
@@ -115,7 +123,7 @@ public class Simulator
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newAnimals);
 
-        view.showStatus(step, field);
+        view.showStatus(step, field, currentTime);
     }
         
     /**
@@ -128,7 +136,7 @@ public class Simulator
         populate();
         
         // Show the starting state in the view.
-        view.showStatus(step, field);
+        view.showStatus(step, field, currentTime);
     }
     
     /**
