@@ -32,7 +32,6 @@ public class Simulator
     // A graphical view of the simulation.
     private SimulatorView view;
     
-    
     /**
      * Construct a simulation field with default size.
      */
@@ -57,13 +56,15 @@ public class Simulator
         
         animals = new ArrayList<>();
         field = new Field(depth, width);
-        
+
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
-        //view.setColor(Prey.class, Color.ORANGE);
-        //view.setColor(Predator.class, Color.BLUE);
-        view.setColor(Fox.class, Color.GREEN);
-        view.setColor(Rabbit.class, Color.PINK);
+        view.setColor(Rabbit.class, Color.green);
+        view.setColor(Mouse.class, Color.blue);
+        view.setColor(Hawk.class, Color.orange);
+        view.setColor(Owl.class, Color.red);
+        view.setColor(Fox.class, Color.black);
+        
         
         // Setup a valid starting point.
         reset();
@@ -136,18 +137,40 @@ public class Simulator
     private void populate()
     {
         Random rand = Randomizer.getRandom();
+        Random randGender= Randomizer.getRandom();
         field.clear();
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
                 if(rand.nextDouble() <= PREDATOR_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Predator predator = new Fox(true, field, location);
-                    animals.add(predator);
+                    int predator1 = rand.nextInt(3);
+                    boolean predatorGender = randGender.nextBoolean();
+                    if(predator1 == 0){
+                        Location location = new Location(row, col);
+                            Predator predator = new Fox(false, field, location, predatorGender);
+                            animals.add(predator);
+                    } else if(predator1 == 1){
+                        Location location = new Location(row, col);
+                        
+                            Predator predator = new Hawk(false, field, location, predatorGender);
+                            animals.add(predator);
+                    } else{
+                        Location location = new Location(row, col);
+                            Predator predator = new Owl(false, field, location, predatorGender);
+                            animals.add(predator);
+                    }
                 }
                 else if(rand.nextDouble() <= PREY_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Prey prey = new Rabbit(true, field, location);
-                    animals.add(prey);
+                    int prey1 = rand.nextInt(2);
+                    boolean preyGender = randGender.nextBoolean();
+                    if(prey1 == 0){
+                        Location location = new Location(row, col);
+                            Prey prey = new Mouse(false, field, location, preyGender);
+                            animals.add(prey);
+                    } else{
+                        Location location = new Location(row, col);
+                            Prey prey = new Rabbit(false, field, location, preyGender);
+                            animals.add(prey);
+                    }
                 }
                 // else leave the location empty.
             }

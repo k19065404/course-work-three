@@ -1,5 +1,5 @@
 import java.awt.Color;
-
+import java.util.List;
 
 /**
  * Write a description of class Mouse here.
@@ -8,19 +8,71 @@ import java.awt.Color;
  * @version (a version number or a date)
  */
 public class Mouse extends Prey
-{
-   public Mouse(boolean randomAge, Field field, Location location)
-    {
-        super(randomAge, field, location, Color.black);
-        BREEDING_AGE= 4;
-        MAX_AGE= 8;
-        BREEDING_PROBABILITY= 0.3;
-        MAX_LITTER_SIZE = 9;
-        FOOD_VALUE=9;
-        //rand= Randomizer.getRandom();
+{   
+    
+    private static String species = "mouse";
+    
+    public Mouse(boolean randomAge, Field field, Location location, boolean gender){
+        super(field, location, gender);
         age = 0;
-        if(randomAge) {
+        BREEDING_AGE = 5;
+        MAX_AGE = 30;
+        BREEDING_PROBABILITY = 0.8;
+        MAX_LITTER_SIZE = 100;
+        colour = Color.red;
+        species = "Mouse";
+        
+        if(randomAge){
             age = rand.nextInt(MAX_AGE);
         }
+    }
+    
+    public String getSpecies(){
+        return species;
+    }
+    
+    public Color getColor(){
+        return colour;
+    }
+    
+    public void giveBirth(List<Animal> newPrey){
+        // New foxes are born into adjacent locations.
+        // Get a list of adjacent free locations.
+        Field field = getField();
+        Location location = getLocation();
+        Object foundAnimal = null;
+        boolean breadable = false;
+
+        List <Animal> foundAnimals = field.getAnimalAt(location);
+        
+        List<Location> free = field.getFreeAdjacentLocations(getLocation());
+        for(int i = 0; i<foundAnimals.size(); i++){
+            if(foundAnimals.get(i).getSpecies().equals(this.getSpecies()) && foundAnimals.get(i).getGender() != this.getGender()){
+                breadable = true;
+                break;
+            }
+        }
+        if(breadable){
+            int births = breed();
+            for(int b = 0; b < births && free.size() > 0; b++) {
+                Location loc = free.remove(0);
+                boolean gender = rand.nextBoolean();
+                Prey young = new Mouse(false, field, loc, gender);
+                newPrey.add(young);
+            }
+        }
+    }
+    
+    private int breed(){
+        int births = 0;
+        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+        }
+        return births;
+    }
+    
+    private boolean canBreed()
+    {
+        return age >= BREEDING_AGE;
     }
 }

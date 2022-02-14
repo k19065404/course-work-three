@@ -10,7 +10,7 @@ import java.awt.Color;
  * @author David J. Barnes and Michael Kölling
  * @version 2016.02.29 (2)
  */
-public class Predator extends Animal
+public abstract class Predator extends Animal
 {
     // Characteristics shared by all foxes (class variables).
     
@@ -24,15 +24,17 @@ public class Predator extends Animal
     protected int MAX_LITTER_SIZE;
     // The food value of a single rabbit. In effect, this is the
     // number of steps a fox can go before it has to eat again.
-    //protected int PREY_FOOD_VALUE;
+    protected int PREY_FOOD_VALUE;
     // A shared random number generator to control breeding.
-    protected Random rand =Randomizer.getRandom();
+    protected Random rand = Randomizer.getRandom();
     
     // Individual characteristics (instance fields).
     // The fox's age.
     protected int age;
     // The fox's food level, which is increased by eating rabbits.
     protected int foodLevel;
+    
+    protected Color colour; 
 
     /**
      * Create a fox. A fox can be created as a new born (age zero
@@ -42,10 +44,9 @@ public class Predator extends Animal
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Predator(boolean randomAge, Field field, Location location, Color colour)
+    public Predator(Field field, Location location, boolean gender)
     {
-        super(field, location, colour);
-        
+        super(field, location, gender);
     }
     
     /**
@@ -113,11 +114,11 @@ public class Predator extends Animal
         while(it.hasNext()) {
             Location where = it.next();
             Object animal = field.getObjectAt(where);
-            if(animal instanceof Rabbit) {
-                Rabbit prey = (Rabbit) animal;
+            if(animal instanceof Prey) {
+                Prey prey = (Prey) animal;
                 if(prey.isAlive()) { 
                     prey.setDead();
-                    foodLevel = prey.getFoodValue();
+                    foodLevel = PREY_FOOD_VALUE;
                     return where;
                 }
             }
@@ -130,39 +131,21 @@ public class Predator extends Animal
      * New births will be made into free adjacent locations.
      * @param newPredator A list to return newly born foxes.
      */
-    private void giveBirth(List<Animal> newPredator)
-    {
-        // New foxes are born into adjacent locations.
-        // Get a list of adjacent free locations.
-        Field field = getField();
-        List<Location> free = field.getFreeAdjacentLocations(getLocation());
-        int births = breed();
-        for(int b = 0; b < births && free.size() > 0; b++) {
-            Location loc = free.remove(0);
-            Predator young = new Predator(false, field, loc, Color.orange);
-            newPredator.add(young);
-        }
-    }
+    public abstract void giveBirth(List<Animal> newPredator);
         
     /**
      * Generate a number representing the number of births,
      * if it can breed.
      * @return The number of births (may be zero).
      */
-    private int breed()
-    {
-        int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        }
-        return births;
-    }
+    
 
     /**
      * A fox can breed if it has reached the breeding age.
      */
-    private boolean canBreed()
-    {
-        return age >= BREEDING_AGE;
+    
+    
+    public Color getColor(){
+        return colour;
     }
 }

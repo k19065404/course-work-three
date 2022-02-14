@@ -1,7 +1,7 @@
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.Random;
 
 /**
@@ -15,7 +15,7 @@ public class Field
 {
     // A random number generator for providing random locations.
     private static final Random rand = Randomizer.getRandom();
-    
+
     // The depth and width of the field.
     private int depth, width;
     // Storage for the animals.
@@ -32,7 +32,7 @@ public class Field
         this.width = width;
         field = new Object[depth][width];
     }
-    
+
     /**
      * Empty the field.
      */
@@ -44,7 +44,7 @@ public class Field
             }
         }
     }
-    
+
     /**
      * Clear the given location.
      * @param location The location to clear.
@@ -53,7 +53,7 @@ public class Field
     {
         field[location.getRow()][location.getCol()] = null;
     }
-    
+
     /**
      * Place an animal at the given location.
      * If there is already an animal at the location it will
@@ -66,7 +66,7 @@ public class Field
     {
         place(animal, new Location(row, col));
     }
-    
+
     /**
      * Place an animal at the given location.
      * If there is already an animal at the location it will
@@ -78,7 +78,7 @@ public class Field
     {
         field[location.getRow()][location.getCol()] = animal;
     }
-    
+
     /**
      * Return the animal at the given location, if any.
      * @param location Where in the field.
@@ -88,18 +88,36 @@ public class Field
     {
         return getObjectAt(location.getRow(), location.getCol());
     }
-    
-    /**
-     * Return the animal at the given location, if any.
-     * @param row The desired row.
-     * @param col The desired column.
-     * @return The animal at the given location, or null if there is none.
-     */
-    public Object getObjectAt(int row, int col)
-    {
+
+    public List<Animal> getAnimalAt(Location location){
+        Animal foundAnimal;
+        Object object;
+        List<Location> locations = adjacentLocations(location);
+        List<Animal> foundAnimals = new ArrayList<>();
+        
+        
+        for (int i = 0; i < locations.size(); i++) {
+            object = getObjectAt(locations.get(i));
+            if (object != null){
+                foundAnimal = (Animal) object;
+                foundAnimals.add(foundAnimal);
+            }
+        }
+        
+        return foundAnimals;
+    }
+
+        /**
+         * Return the animal at the given location, if any.
+         * @param row The desired row.
+         * @param col The desired column.
+         * @return The animal at the given location, or null if there is none.
+         */
+        public Object getObjectAt(int row, int col)
+        {
         return field[row][col];
     }
-    
+
     /**
      * Generate a random location that is adjacent to the
      * given location, or is the same location.
@@ -113,7 +131,7 @@ public class Field
         List<Location> adjacent = adjacentLocations(location);
         return adjacent.get(0);
     }
-    
+
     /**
      * Get a shuffled list of the free adjacent locations.
      * @param location Get locations adjacent to this.
@@ -130,7 +148,7 @@ public class Field
         }
         return free;
     }
-    
+
     /**
      * Try to find a free location that is adjacent to the
      * given location. If there is none, return null.
@@ -178,7 +196,7 @@ public class Field
                     }
                 }
             }
-            
+
             // Shuffle the list. Several other methods rely on the list
             // being in a random order.
             Collections.shuffle(locations, rand);
@@ -194,7 +212,7 @@ public class Field
     {
         return depth;
     }
-    
+
     /**
      * Return the width of the field.
      * @return The width of the field.

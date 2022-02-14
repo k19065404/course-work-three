@@ -1,5 +1,4 @@
 import java.util.List;
-import java.awt.Color;
 
 /**
  * A class representing shared characteristics of animals.
@@ -15,20 +14,26 @@ public abstract class Animal
     private Field field;
     // The animal's position in the field.
     private Location location;
+    //determines the gender
+    protected boolean isFemale;
     
-    protected Color colour;
+    protected String Species;
     
     /**
      * Create a new animal at location in field.
      * 
      * @param field The field currently occupied.
      * @param location The location within the field.
+     * @param gender true if female, false if male
      */
-    public Animal(Field field, Location location, Color colour)
+    public Animal(Field field, Location location, boolean gender)
     {
         alive = true;
+        isFemale = gender;
         this.field = field;
+        
         setLocation(location);
+        
     }
     
     /**
@@ -92,7 +97,12 @@ public abstract class Animal
         return field;
     }
     
-    protected Color getColour(){
-        return colour;
+    protected boolean getGender(){
+        return isFemale;
+    }
+    
+    public String getSpecies(){
+        return Species;
     }
 }
+

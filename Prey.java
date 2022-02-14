@@ -9,22 +9,18 @@ import java.awt.Color;
  * @author David J. Barnes and Michael Kölling
  * @version 2016.02.29 (2)
  */
-public class Prey extends Animal
+public abstract class Prey extends Animal
 {
     // Characteristics shared by all rabbits (class variables).
 
     // The age at which a rabbit can start to breed.
-    protected int BREEDING_AGE;
+    protected int BREEDING_AGE = 5;
     // The age to which a rabbit can live.
-    protected int MAX_AGE;
+    protected int MAX_AGE = 40;
     // The likelihood of a rabbit breeding.
-    protected double BREEDING_PROBABILITY;
+    protected double BREEDING_PROBABILITY = 0.12;
     // The maximum number of births.
-    protected int MAX_LITTER_SIZE;
-    //The food value gained from consuming this prey
-    protected int FOOD_VALUE;
-    //the food value from consuming the specified prey
-    //protected int PREY_VALUE;
+    protected int MAX_LITTER_SIZE = 4;
     // A shared random number generator to control breeding.
     protected Random rand = Randomizer.getRandom();
     
@@ -32,6 +28,8 @@ public class Prey extends Animal
     
     // The rabbit's age.
     protected int age;
+    
+    protected Color colour;
 
     /**
      * Create a new rabbit. A rabbit may be created with age
@@ -41,11 +39,9 @@ public class Prey extends Animal
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Prey(boolean randomAge, Field field, Location location, Color colour)
+    public Prey(Field field, Location location, boolean gender)
     {
-        super(field, location, colour);
-        age = 0;
-        
+        super(field, location, gender);
     }
     
     /**
@@ -87,44 +83,34 @@ public class Prey extends Animal
      * New births will be made into free adjacent locations.
      * @param newRabbits A list to return newly born rabbits.
      */
-    private void giveBirth(List<Animal> newRabbits)
-    {
+    abstract public void giveBirth(List<Animal> newRabbits);
+    
         // New rabbits are born into adjacent locations.
         // Get a list of adjacent free locations.
-        Field field = getField();
-        List<Location> free = field.getFreeAdjacentLocations(getLocation());
-        int births = breed();
-        for(int b = 0; b < births && free.size() > 0; b++) {
-            Location loc = free.remove(0);
-            Prey young = new Prey(false, field, loc, Color.blue);
-            newRabbits.add(young);
-        }
-    }
+        //Field field = getField();
+        //List<Location> free = field.getFreeAdjacentLocations(getLocation());
+        //int births = breed();
+        //for(int b = 0; b < births && free.size() > 0; b++) {
+        //    Location loc = free.remove(0);
+        //    Prey young = new Prey(field, loc);
+        //    newRabbits.add(young);
+        
+    
         
     /**
      * Generate a number representing the number of births,
      * if it can breed.
      * @return The number of births (may be zero).
      */
-    private int breed()
-    {
-        int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        }
-        return births;
-    }
+    
 
     /**
      * A rabbit can breed if it has reached the breeding age.
      * @return true if the rabbit can breed, false otherwise.
      */
-    private boolean canBreed()
-    {
-        return age >= BREEDING_AGE;
-    }
     
-    public int getFoodValue(){
-        return FOOD_VALUE;
+    
+    public Color getColor(){
+        return colour;
     }
 }
