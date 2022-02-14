@@ -145,7 +145,7 @@ public abstract class Predator extends Animal
                 Prey prey = (Prey) animal;
                 if(prey.isAlive()) { 
                     prey.setDead();
-                    foodLevel = PREY_FOOD_VALUE;
+                    foodLevel += PREY_FOOD_VALUE;
                     return where;
                 }
             }

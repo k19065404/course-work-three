@@ -70,6 +70,7 @@ public class Simulator
         view.setColor(Hawk.class, Color.orange);
         view.setColor(Owl.class, Color.red);
         view.setColor(Fox.class, Color.black);
+        view.setColor(Fox.class, Color.pink);
 
         // Setup a valid starting point.
         reset();
@@ -172,11 +173,15 @@ public class Simulator
                     }
                 }
                 else if(rand.nextDouble() <= PREY_CREATION_PROBABILITY) {
-                    int prey1 = rand.nextInt(2);
+                    int prey1 = rand.nextInt(3);
                     boolean preyGender = randGender.nextBoolean();
                     if(prey1 == 0){
                         Location location = new Location(row, col);
                         Prey prey = new Mouse(false, field, location, preyGender);
+                        animals.add(prey);
+                    } else if(prey1 == 1){
+                        Location location = new Location(row, col);
+                        Prey prey = new Squirrel(false, field, location, preyGender);
                         animals.add(prey);
                     } else{
                         Location location = new Location(row, col);

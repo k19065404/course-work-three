@@ -89,9 +89,9 @@ public class Fox extends Predator
     
     public void toggleAsleep(Time time){
         if (time.timeOfDay()){
-            isAsleep = false;
-        } else {
             isAsleep = true;
+        } else {
+            isAsleep = false;
         }
     }
 }
