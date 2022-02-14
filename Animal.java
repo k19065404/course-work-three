@@ -45,6 +45,11 @@ public abstract class Animal
     abstract public void act(List<Animal> newAnimals, Time time);
     
     
+    /**
+     * Increase the age. This could result in the fox's death.
+     */
+    abstract public void incrementAge();
+    
 
     /**
      * Check whether the animal is alive or not.

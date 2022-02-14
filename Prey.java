@@ -53,7 +53,7 @@ public abstract class Prey extends Animal
      */
     public void act(List<Animal> newPrey, Time time)
     {
-        incrementAge();
+        //incrementAge();
         toggleAsleep(time);
         if(isAlive() && !isAsleep) {
             giveBirth(newPrey);            
@@ -75,7 +75,7 @@ public abstract class Prey extends Animal
      * Increase the age.
      * This could result in the rabbit's death.
      */
-    private void incrementAge()
+    public void incrementAge()
     {
         age++;
         if(age > MAX_AGE) {

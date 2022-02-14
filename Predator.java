@@ -60,11 +60,11 @@ public abstract class Predator extends Animal
      */
     public void act(List<Animal> newPredator, Time time)
     {
-        incrementAge();
-        
+        //incrementAge();
+        incrementHunger();
         toggleAsleep(time);
         if(isAlive() && !isAsleep) {
-            incrementHunger();
+            
             giveBirth(newPredator);            
             // Move towards a source of food if found.
             Location newLocation = findFood();
@@ -88,7 +88,7 @@ public abstract class Predator extends Animal
     /**
      * Increase the age. This could result in the fox's death.
      */
-    private void incrementAge()
+    public void incrementAge()
     {
         age++;
         if(age > MAX_AGE) {
