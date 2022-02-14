@@ -17,6 +17,7 @@ public class Hawk extends Predator
         BREEDING_PROBABILITY = 0.6;
         MAX_LITTER_SIZE = 3;
         PREY_FOOD_VALUE = 8;
+        isAsleep = false;
         age = 0;
         colour = Color.green;
         foodLevel = 80;
@@ -75,5 +76,13 @@ public class Hawk extends Predator
     private boolean canBreed()
     {
         return age >= BREEDING_AGE;
+    }
+    
+    public void toggleAsleep(Time time){
+        if (time.timeOfDay()){
+            isAsleep = true;
+        } else {
+            isAsleep = false;
+        }
     }
 }

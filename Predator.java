@@ -25,6 +25,8 @@ public abstract class Predator extends Animal
     // The food value of a single rabbit. In effect, this is the
     // number of steps a fox can go before it has to eat again.
     protected int PREY_FOOD_VALUE;
+    //is the animal asleep
+    protected boolean isAsleep;
     // A shared random number generator to control breeding.
     protected Random rand = Randomizer.getRandom();
     
@@ -56,11 +58,13 @@ public abstract class Predator extends Animal
      * @param field The field currently occupied.
      * @param newPredator A list to return newly born foxes.
      */
-    public void act(List<Animal> newPredator)
+    public void act(List<Animal> newPredator, Time time)
     {
         incrementAge();
-        incrementHunger();
-        if(isAlive()) {
+        
+        toggleAsleep(time);
+        if(isAlive() && !isAsleep) {
+            incrementHunger();
             giveBirth(newPredator);            
             // Move towards a source of food if found.
             Location newLocation = findFood();
@@ -78,6 +82,8 @@ public abstract class Predator extends Animal
             }
         }
     }
+    
+    abstract public void toggleAsleep(Time time);
 
     /**
      * Increase the age. This could result in the fox's death.

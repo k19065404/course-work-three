@@ -19,10 +19,12 @@ public class Fox extends Predator
         MAX_LITTER_SIZE = 3;
         PREY_FOOD_VALUE = 8;
         age = 0;
+        isAsleep = false;
         colour = Color.orange;
         foodLevel = 60;
         Species = "Fox";
-
+        
+        
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
         }
@@ -71,5 +73,25 @@ public class Fox extends Predator
     private boolean canBreed()
     {
         return age >= BREEDING_AGE;
+    }
+    
+    public void setNight(){
+        BREEDING_PROBABILITY = 0.4;
+        MAX_LITTER_SIZE = 4;
+        PREY_FOOD_VALUE = 8;
+    }
+    
+    public void setDay(){
+        BREEDING_PROBABILITY = 0.3;
+        MAX_LITTER_SIZE = 3;
+        PREY_FOOD_VALUE = 8;
+    }
+    
+    public void toggleAsleep(Time time){
+        if (time.timeOfDay()){
+            isAsleep = false;
+        } else {
+            isAsleep = true;
+        }
     }
 }

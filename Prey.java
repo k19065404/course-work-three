@@ -24,6 +24,8 @@ public abstract class Prey extends Animal
     // A shared random number generator to control breeding.
     protected Random rand = Randomizer.getRandom();
     
+    protected boolean isAsleep;
+    
     // Individual characteristics (instance fields).
     
     // The rabbit's age.
@@ -49,10 +51,11 @@ public abstract class Prey extends Animal
      * around. Sometimes it will breed or die of old age.
      * @param newRabbits A list to return newly born rabbits.
      */
-    public void act(List<Animal> newPrey)
+    public void act(List<Animal> newPrey, Time time)
     {
         incrementAge();
-        if(isAlive()) {
+        toggleAsleep(time);
+        if(isAlive() && !isAsleep) {
             giveBirth(newPrey);            
             // Try to move into a free location.
             Location newLocation = getField().freeAdjacentLocation(getLocation());
@@ -65,6 +68,8 @@ public abstract class Prey extends Animal
             }
         }
     }
+    
+    abstract public void toggleAsleep(Time time);
 
     /**
      * Increase the age.

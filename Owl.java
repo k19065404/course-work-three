@@ -16,6 +16,7 @@ public class Owl extends Predator
         BREEDING_PROBABILITY = 0.6;
         MAX_LITTER_SIZE = 4;
         PREY_FOOD_VALUE = 8;
+        isAsleep = false;
         age = 0;
         colour = Color.pink;
         foodLevel = 80;
@@ -74,5 +75,13 @@ public class Owl extends Predator
     private boolean canBreed()
     {
         return age >= BREEDING_AGE;
+    }
+    
+    public void toggleAsleep(Time time){
+        if (time.timeOfDay()){
+            isAsleep = false;
+        } else {
+            isAsleep = true;
+        }
     }
 }

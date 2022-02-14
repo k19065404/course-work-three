@@ -19,6 +19,7 @@ public class Rabbit extends Prey
         MAX_AGE = 100;
         BREEDING_PROBABILITY = 0.8;
         MAX_LITTER_SIZE = 100;
+        isAsleep = false;
         colour = Color.orange;
         Species = "Rabbit";
 
@@ -62,5 +63,13 @@ public class Rabbit extends Prey
     private boolean canBreed()
     {
         return age >= BREEDING_AGE;
+    }
+    
+    public void toggleAsleep(Time time){
+        if (time.timeOfDay()){
+            isAsleep = true;
+        } else {
+            isAsleep = false;
+        }
     }
 }

@@ -19,6 +19,7 @@ public class Mouse extends Prey
         MAX_AGE = 30;
         BREEDING_PROBABILITY = 0.8;
         MAX_LITTER_SIZE = 100;
+        isAsleep = false;
         colour = Color.red;
         species = "Mouse";
         
@@ -74,5 +75,13 @@ public class Mouse extends Prey
     private boolean canBreed()
     {
         return age >= BREEDING_AGE;
+    }
+    
+    public void toggleAsleep(Time time){
+        if (time.timeOfDay()){
+            isAsleep = true;
+        } else {
+            isAsleep = false;
+        }
     }
 }
