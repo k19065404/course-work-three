@@ -31,13 +31,13 @@ public class Simulator
     private int step;
     // object of time class.
     private Time time = new Time();
-    
+
     // current time in string formate.
     private String currentTime;
-    
+
     // A graphical view of the simulation.
     private SimulatorView view;
-    
+
     /**
      * Construct a simulation field with default size.
      */
@@ -45,7 +45,7 @@ public class Simulator
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
     }
-    
+
     /**
      * Create a simulation field with the given size.
      * @param depth Depth of the field. Must be greater than zero.
@@ -59,7 +59,7 @@ public class Simulator
             depth = DEFAULT_DEPTH;
             width = DEFAULT_WIDTH;
         }
-        
+
         animals = new ArrayList<>();
         field = new Field(depth, width);
 
@@ -70,12 +70,11 @@ public class Simulator
         view.setColor(Hawk.class, Color.orange);
         view.setColor(Owl.class, Color.red);
         view.setColor(Fox.class, Color.black);
-        
-        
+
         // Setup a valid starting point.
         reset();
     }
-    
+
     /**
      * Run the simulation from its current state for a reasonably long period,
      * (4000 steps).
@@ -84,7 +83,7 @@ public class Simulator
     {
         simulate(4000);
     }
-    
+
     /**
      * Run the simulation from its current state for the given number of steps.
      * Stop before the given number of steps if it ceases to be viable.
@@ -97,7 +96,7 @@ public class Simulator
             // delay(60);   // uncomment this to run more slowly
         }
     }
-    
+
     /**
      * Run the simulation from its current state for a single step.
      * Iterate over the whole field updating the state of each
@@ -115,23 +114,22 @@ public class Simulator
         for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
             Animal animal = it.next();
             if(step % 1440 == 0){
-            animal.incrementAge();
-        }
+                animal.incrementAge();
+            }
             animal.act(newAnimals, time);
-            
+
             if(! animal.isAlive()) {
                 it.remove();
             }
         }
-        
-        
+
         
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newAnimals);
 
         view.showStatus(step, field, currentTime);
     }
-        
+
     /**
      * Reset the simulation to a starting position.
      */
@@ -140,11 +138,11 @@ public class Simulator
         step = 0;
         animals.clear();
         populate();
-        
+
         // Show the starting state in the view.
         view.showStatus(step, field, currentTime);
     }
-    
+
     /**
      * Randomly populate the field with foxes and rabbits.
      */
@@ -160,17 +158,17 @@ public class Simulator
                     boolean predatorGender = randGender.nextBoolean();
                     if(predator1 == 0){
                         Location location = new Location(row, col);
-                            Predator predator = new Fox(false, field, location, predatorGender);
-                            animals.add(predator);
+                        Predator predator = new Fox(false, field, location, predatorGender);
+                        animals.add(predator);
                     } else if(predator1 == 1){
                         Location location = new Location(row, col);
-                        
-                            Predator predator = new Hawk(false, field, location, predatorGender);
-                            animals.add(predator);
+
+                        Predator predator = new Hawk(false, field, location, predatorGender);
+                        animals.add(predator);
                     } else{
                         Location location = new Location(row, col);
-                            Predator predator = new Owl(false, field, location, predatorGender);
-                            animals.add(predator);
+                        Predator predator = new Owl(false, field, location, predatorGender);
+                        animals.add(predator);
                     }
                 }
                 else if(rand.nextDouble() <= PREY_CREATION_PROBABILITY) {
@@ -178,19 +176,19 @@ public class Simulator
                     boolean preyGender = randGender.nextBoolean();
                     if(prey1 == 0){
                         Location location = new Location(row, col);
-                            Prey prey = new Mouse(false, field, location, preyGender);
-                            animals.add(prey);
+                        Prey prey = new Mouse(false, field, location, preyGender);
+                        animals.add(prey);
                     } else{
                         Location location = new Location(row, col);
-                            Prey prey = new Rabbit(false, field, location, preyGender);
-                            animals.add(prey);
+                        Prey prey = new Rabbit(false, field, location, preyGender);
+                        animals.add(prey);
                     }
                 }
                 // else leave the location empty.
             }
         }
     }
-    
+
     /**
      * Pause for a given time.
      * @param millisec  The time to pause for, in milliseconds

@@ -13,7 +13,7 @@ import java.awt.Color;
 public abstract class Predator extends Animal
 {
     // Characteristics shared by all foxes (class variables).
-    
+
     // The age at which a fox can start to breed.
     protected int BREEDING_AGE;
     // The age to which a fox can live.
@@ -29,13 +29,13 @@ public abstract class Predator extends Animal
     protected boolean isAsleep;
     // A shared random number generator to control breeding.
     protected Random rand = Randomizer.getRandom();
-    
+
     // Individual characteristics (instance fields).
     // The fox's age.
     protected int age;
     // The fox's food level, which is increased by eating rabbits.
     protected int foodLevel;
-    
+
     protected Color colour; 
 
     /**
@@ -50,7 +50,7 @@ public abstract class Predator extends Animal
     {
         super(field, location, gender);
     }
-    
+
     /**
      * This is what the fox does most of the time: it hunts for
      * rabbits. In the process, it might breed, die of hunger,
@@ -61,28 +61,49 @@ public abstract class Predator extends Animal
     public void act(List<Animal> newPredator, Time time)
     {
         //incrementAge();
-        incrementHunger();
+        //incrementHunger();
         toggleAsleep(time);
-        if(isAlive() && !isAsleep) {
-            
-            giveBirth(newPredator);            
-            // Move towards a source of food if found.
-            Location newLocation = findFood();
-            if(newLocation == null) { 
-                // No food found - try to move to a free location.
-                newLocation = getField().freeAdjacentLocation(getLocation());
-            }
-            // See if it was possible to move.
-            if(newLocation != null) {
-                setLocation(newLocation);
-            }
-            else {
-                // Overcrowding.
-                setDead();
+        if (!isAsleep){
+            incrementHunger();
+            if(isAlive()){
+                giveBirth(newPredator);            
+                // Move towards a source of food if found.
+                Location newLocation = findFood();
+                if(newLocation == null) { 
+                    // No food found - try to move to a free location.
+                    newLocation = getField().freeAdjacentLocation(getLocation());
+                }
+                // See if it was possible to move.
+                if(newLocation != null) {
+                    setLocation(newLocation);
+                }
+                else {
+                    // Overcrowding.
+                    setDead();
+                }
             }
         }
+
+        // if(isAlive() && !isAsleep) {
+
+        // giveBirth(newPredator);            
+        // // Move towards a source of food if found.
+        // Location newLocation = findFood();
+        // if(newLocation == null) { 
+        // // No food found - try to move to a free location.
+        // newLocation = getField().freeAdjacentLocation(getLocation());
+        // }
+        // // See if it was possible to move.
+        // if(newLocation != null) {
+        // setLocation(newLocation);
+        // }
+        // else {
+        // // Overcrowding.
+        // setDead();
+        // }
+        // }
     }
-    
+
     abstract public void toggleAsleep(Time time);
 
     /**
@@ -95,7 +116,7 @@ public abstract class Predator extends Animal
             setDead();
         }
     }
-    
+
     /**
      * Make this fox more hungry. This could result in the fox's death.
      */
@@ -106,7 +127,7 @@ public abstract class Predator extends Animal
             setDead();
         }
     }
-    
+
     /**
      * Look for rabbits adjacent to the current location.
      * Only the first live rabbit is eaten.
@@ -131,26 +152,24 @@ public abstract class Predator extends Animal
         }
         return null;
     }
-    
+
     /**
      * Check whether or not this fox is to give birth at this step.
      * New births will be made into free adjacent locations.
      * @param newPredator A list to return newly born foxes.
      */
     public abstract void giveBirth(List<Animal> newPredator);
-        
+
     /**
      * Generate a number representing the number of births,
      * if it can breed.
      * @return The number of births (may be zero).
      */
-    
 
     /**
      * A fox can breed if it has reached the breeding age.
      */
-    
-    
+
     public Color getColor(){
         return colour;
     }
