@@ -12,15 +12,15 @@ public class Hawk extends Predator
     
     public Hawk(boolean randomAge, Field field, Location location, boolean gender){
         super(field, location, gender);
-        BREEDING_AGE = 35;
-        MAX_AGE = 70;
-        BREEDING_PROBABILITY = 0.6;
-        MAX_LITTER_SIZE = 3;
+        BREEDING_AGE = 3;
+        MAX_AGE = 10;
+        BREEDING_PROBABILITY = 0.06;
+        MAX_LITTER_SIZE = 2;
         PREY_FOOD_VALUE = 8;
         isAsleep = false;
         age = 0;
         colour = Color.green;
-        foodLevel = 80;
+        foodLevel = 60;
         Species = "Hawk";
         
         if(randomAge) {

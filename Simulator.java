@@ -19,9 +19,9 @@ public class Simulator
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 80;
     // The probability that a fox will be created in any given grid position.
-    private static final double PREDATOR_CREATION_PROBABILITY = 0.02;
+    private static final double PREDATOR_CREATION_PROBABILITY = 0.03;
     // The probability that a rabbit will be created in any given grid position.
-    private static final double PREY_CREATION_PROBABILITY = 0.08;    
+    private static final double PREY_CREATION_PROBABILITY = 0.06;    
 
     // List of animals in the field.
     private List<Animal> animals;
@@ -113,7 +113,7 @@ public class Simulator
         // Let all rabbits act.
         for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
             Animal animal = it.next();
-            if(step % 1440 == 0){
+            if(step % 48 == 0){
                 animal.incrementAge();
             }
             animal.act(newAnimals, time);

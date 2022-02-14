@@ -65,6 +65,7 @@ public abstract class Prey extends Animal
             else {
                 // Overcrowding.
                 setDead();
+                //System.out.println("over crowding");
             }
         }
     }

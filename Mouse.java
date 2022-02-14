@@ -15,10 +15,10 @@ public class Mouse extends Prey
     public Mouse(boolean randomAge, Field field, Location location, boolean gender){
         super(field, location, gender);
         age = 0;
-        BREEDING_AGE = 5;
-        MAX_AGE = 30;
-        BREEDING_PROBABILITY = 0.8;
-        MAX_LITTER_SIZE = 100;
+        BREEDING_AGE = 2;
+        MAX_AGE = 6;
+        BREEDING_PROBABILITY = 0.3;
+        MAX_LITTER_SIZE = 10;
         isAsleep = false;
         colour = Color.red;
         species = "Mouse";

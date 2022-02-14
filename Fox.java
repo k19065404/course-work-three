@@ -13,11 +13,11 @@ public class Fox extends Predator
     public Fox(boolean randomAge, Field field, Location location, boolean gender){
 
         super(field, location, gender);
-        BREEDING_AGE = 15;
-        MAX_AGE = 30;
-        BREEDING_PROBABILITY = 0.3;
-        MAX_LITTER_SIZE = 3;
-        PREY_FOOD_VALUE = 8;
+        BREEDING_AGE = 2;
+        MAX_AGE = 5;
+        BREEDING_PROBABILITY = 0.21;
+        MAX_LITTER_SIZE = 2;
+        PREY_FOOD_VALUE = 10;
         age = 0;
         isAsleep = false;
         colour = Color.orange;
@@ -40,8 +40,8 @@ public class Fox extends Predator
         Field field = getField();
         Location location = getLocation();
         Object foundAnimal = null;
-        boolean breadable = false;
-
+        boolean breadable = false;;
+        
         List <Animal> foundAnimals = field.getAnimalAt(location);
         
         List<Location> free = field.getFreeAdjacentLocations(getLocation());

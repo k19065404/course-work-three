@@ -29,6 +29,8 @@ public abstract class Predator extends Animal
     protected boolean isAsleep;
     // A shared random number generator to control breeding.
     protected Random rand = Randomizer.getRandom();
+    //can only eat every 10 steps
+    //protected boolean canEat;
 
     // Individual characteristics (instance fields).
     // The fox's age.
@@ -68,6 +70,7 @@ public abstract class Predator extends Animal
             if(isAlive()){
                 giveBirth(newPredator);            
                 // Move towards a source of food if found.
+
                 Location newLocation = findFood();
                 if(newLocation == null) { 
                     // No food found - try to move to a free location.
@@ -79,8 +82,10 @@ public abstract class Predator extends Animal
                 }
                 else {
                     // Overcrowding.
-                    setDead();
+                    //setDead();
+                    //System.out.println("over crowding");
                 }
+
             }
         }
 
@@ -128,8 +133,9 @@ public abstract class Predator extends Animal
         }
     }
 
+
     /**
-     * Look for rabbits adjacent to the current location.
+     * Look for prey adjacent to the current location.
      * Only the first live rabbit is eaten.
      * @return Where food was found, or null if it wasn't.
      */
@@ -145,7 +151,7 @@ public abstract class Predator extends Animal
                 Prey prey = (Prey) animal;
                 if(prey.isAlive()) { 
                     prey.setDead();
-                    foodLevel = PREY_FOOD_VALUE;
+                    foodLevel += PREY_FOOD_VALUE;
                     return where;
                 }
             }
