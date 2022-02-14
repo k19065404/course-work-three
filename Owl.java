@@ -11,15 +11,15 @@ public class Owl extends Predator
 {    
     public Owl(boolean randomAge, Field field, Location location, boolean gender){
         super(field, location, gender);
-        BREEDING_AGE = 40;
-        MAX_AGE = 100;
-        BREEDING_PROBABILITY = 0.6;
-        MAX_LITTER_SIZE = 4;
+        BREEDING_AGE = 3;
+        MAX_AGE = 10;
+        BREEDING_PROBABILITY = 0.2;
+        MAX_LITTER_SIZE = 2;
         PREY_FOOD_VALUE = 8;
         isAsleep = false;
         age = 0;
         colour = Color.pink;
-        foodLevel = 80;
+        foodLevel = 60;
         Species = "Owl";
         
         if(randomAge) {

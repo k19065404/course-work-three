@@ -33,7 +33,7 @@ public class Time
     }
     
     public void incrimentMinutes(){
-        minutes++;
+        minutes+=30;
         if(minutes >= 60){
             minutes = 0;
             incrimentHours();
@@ -63,7 +63,7 @@ public class Time
     }
     
     public boolean timeOfDay(){
-        if(hours < 6 || hours > 18){
+        if(hours < 9 || hours > 18){
             isNight = true;
         } else {
             isNight = false;
