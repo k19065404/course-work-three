@@ -149,9 +149,7 @@ public class Simulator
             }
         }
         
-        if(step % 192 == 0){
-            spawnSmallPlants(step);
-        }
+        spawnPlants(step);
         
 
         
@@ -175,19 +173,19 @@ public class Simulator
         view.showStatus(step, field, currentTime);
     }
 
-    private void spawnSmallPlants(int step){
+    private void spawnPlants(int step){
         Random rand = Randomizer.getRandom();
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++){
                 if(field.getObjectAt(row,col) == null){
-                    if(step % 50 == 0){
+                    if(step % 576 == 0){
                         if(rand.nextDouble() <= TREE_CREATION_PROBABILITY){
                             Location location = new Location(row, col);
                             Plant plant = new SmallPlants(field, location);
                             plants.add(plant);
                         }
                     } 
-                    else if(step % 4 == 0){
+                    else if(step % 192 == 0){
                         if(rand.nextDouble() <= SMALL_PLANT_CREATION_PROBABILITY){
                             Location location = new Location(row, col);
                             Plant plant = new SmallPlants(field, location);

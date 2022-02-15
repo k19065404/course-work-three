@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.*;
 
 /**
  * A class representing shared characteristics of animals.
@@ -17,6 +18,8 @@ public abstract class Plant
     
     protected int age;
     protected int MAX_AGE;
+    protected Random random = new Random();
+    protected boolean randomAge;
     
     /**
      * Create a new plant at location in field.

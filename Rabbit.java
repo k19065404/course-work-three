@@ -17,7 +17,7 @@ public class Rabbit extends Prey
         age = 0;
         BREEDING_AGE = 1;
         MAX_AGE = 6;
-        BREEDING_PROBABILITY = 0.2;
+        BREEDING_PROBABILITY = 0.4;
         MAX_LITTER_SIZE = 4;
         isAsleep = false;
         colour = Color.orange;

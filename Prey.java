@@ -58,19 +58,45 @@ public abstract class Prey extends Animal
      */
     public void act(List<Animal> newPrey, Time time)
     {
-        //incrementAge();
+        // //incrementAge();
+        // toggleAsleep(time);
+        // if(isAlive() && !isAsleep) {
+            // giveBirth(newPrey);            
+            // // Try to move into a free location.
+            // Location newLocation = getField().freeAdjacentLocation(getLocation());
+            // if(newLocation != null) {
+                // setLocation(newLocation);
+            // }
+            // else {
+                // // Overcrowding.
+                // setDead();
+                // //System.out.println("over crowding");
+            // }
+        // }
+        // findFood();
+        
         toggleAsleep(time);
-        if(isAlive() && !isAsleep) {
-            giveBirth(newPrey);            
-            // Try to move into a free location.
-            Location newLocation = getField().freeAdjacentLocation(getLocation());
-            if(newLocation != null) {
-                setLocation(newLocation);
-            }
-            else {
-                // Overcrowding.
-                setDead();
-                //System.out.println("over crowding");
+        if (!isAsleep){
+            incrementHunger();
+            if(isAlive()){
+                giveBirth(newPrey);            
+                // Move towards a source of food if found.
+
+                Location newLocation = findFood();
+                if(newLocation == null) { 
+                    // No food found - try to move to a free location.
+                    newLocation = getField().freeAdjacentLocation(getLocation());
+                }
+                // See if it was possible to move.
+                if(newLocation != null) {
+                    setLocation(newLocation);
+                }
+                else {
+                    // Overcrowding.
+                    setDead();
+                    //System.out.println("over crowding");
+                }
+
             }
         }
     }
@@ -114,7 +140,7 @@ public abstract class Prey extends Animal
         while(it.hasNext()) {
             Location where = it.next();
             Object plant = field.getObjectAt(where);
-            if(plant instanceof Plant) {
+            if(plant instanceof SmallPlants) {
                 Plant smallPlant = (SmallPlants) plant;
                 if(smallPlant.isAlive()) {
                     smallPlant.setDead();

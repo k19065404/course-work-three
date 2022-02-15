@@ -10,7 +10,12 @@ public class Tree extends Plant
     
     public Tree(Field field, Location location){
         super(field, location);
-        age = 0;
+        randomAge = random.nextBoolean();
+        if(randomAge){
+           age = random.nextInt(40); 
+        } else {
+            age = 0;
+        }
         MAX_AGE = 60;
     }
     

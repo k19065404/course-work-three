@@ -11,7 +11,15 @@ public class SmallPlants extends Plant
     
     public SmallPlants(Field field, Location location){
         super(field, location);
-        age = 0;
+        
+        randomAge = random.nextBoolean();
+        if(randomAge){
+           age = random.nextInt(4); 
+        } else {
+            age = 0;
+        }
+        
+        
         MAX_AGE = 6;
         foodValue = 1;
     }
