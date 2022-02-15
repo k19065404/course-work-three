@@ -22,6 +22,8 @@ public class Rabbit extends Prey
         isAsleep = false;
         colour = Color.orange;
         Species = "Rabbit";
+        PLANT_FOOD_VALUE = 4;
+        foodLevel = 6;
 
         if(randomAge){
             age = rand.nextInt(MAX_AGE);
@@ -38,16 +40,30 @@ public class Rabbit extends Prey
 
     public void giveBirth(List<Animal> newRabbits)
     {
-        // New rabbits are born into adjacent locations.
+        // New foxes are born into adjacent locations.
         // Get a list of adjacent free locations.
         Field field = getField();
+        Location location = getLocation();
+        Object foundAnimal = null;
+        boolean breadable = false;
+
+        List <Animal> foundAnimals = field.getAnimalAt(location);
+        
         List<Location> free = field.getFreeAdjacentLocations(getLocation());
-        int births = breed();
-        for(int b = 0; b < births && free.size() > 0; b++) {
-            Location loc = free.remove(0);
-            boolean gender = rand.nextBoolean();
-            Prey young = new Rabbit(false, field, loc, true);
-            newRabbits.add(young);
+        for(int i = 0; i<foundAnimals.size(); i++){
+            if(foundAnimals.get(i).getSpecies().equals(this.getSpecies()) && foundAnimals.get(i).getGender() != this.getGender()){
+                breadable = true;
+                break;
+            }
+        }
+        if(breadable){
+            int births = breed();
+            for(int b = 0; b < births && free.size() > 0; b++) {
+                Location loc = free.remove(0);
+                boolean gender = rand.nextBoolean();
+                Prey young = new Rabbit(false, field, loc, gender);
+                newRabbits.add(young);
+            }
         }
     }
 

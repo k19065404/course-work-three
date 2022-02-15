@@ -114,7 +114,7 @@ public class Field
             if (object != null && (object.getClass() == Animal.class)){
                 foundAnimal = (Animal) object;
                 foundAnimals.add(foundAnimal);
-            }
+            } 
         }
 
         return foundAnimals;

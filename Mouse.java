@@ -22,6 +22,8 @@ public class Mouse extends Prey
         isAsleep = false;
         colour = Color.red;
         species = "Mouse";
+        PLANT_FOOD_VALUE = 4;
+        foodLevel = 6;
         
         if(randomAge){
             age = rand.nextInt(MAX_AGE);

@@ -23,9 +23,9 @@ public class Simulator
     // The probability that a rabbit will be created in any given grid position.
     private static final double PREY_CREATION_PROBABILITY = 0.06; 
     // The probability that a small plant will be created in any given grid position.
-    private static final double SMALL_PLANT_CREATION_PROBABILITY = 0.08;
+    private static final double SMALL_PLANT_CREATION_PROBABILITY = 0.04;
     // The probability that a Tree will be created in any given grid position.
-    private static final double TREE_CREATION_PROBABILITY = 0.04;
+    private static final double TREE_CREATION_PROBABILITY = 0.08;
     
 
     // List of animals in the field.
@@ -81,7 +81,8 @@ public class Simulator
         view.setColor(Owl.class, Color.red);
         view.setColor(Fox.class, Color.black);
         view.setColor(Squirrel.class, Color.pink);
-        view.setColor(Tree.class, Color.green);
+        view.setColor(Tree.class, Color.magenta);
+        view.setColor(SmallPlants.class, Color.green);
 
         // Setup a valid starting point.
         reset();
@@ -147,6 +148,11 @@ public class Simulator
                 it.remove();
             }
         }
+        
+        if(step % 192 == 0){
+            spawnSmallPlants(step);
+        }
+        
 
         
         // Add the newly born foxes and rabbits to the main lists.
@@ -169,6 +175,30 @@ public class Simulator
         view.showStatus(step, field, currentTime);
     }
 
+    private void spawnSmallPlants(int step){
+        Random rand = Randomizer.getRandom();
+        for(int row = 0; row < field.getDepth(); row++) {
+            for(int col = 0; col < field.getWidth(); col++){
+                if(field.getObjectAt(row,col) == null){
+                    if(step % 50 == 0){
+                        if(rand.nextDouble() <= TREE_CREATION_PROBABILITY){
+                            Location location = new Location(row, col);
+                            Plant plant = new SmallPlants(field, location);
+                            plants.add(plant);
+                        }
+                    } 
+                    else if(step % 4 == 0){
+                        if(rand.nextDouble() <= SMALL_PLANT_CREATION_PROBABILITY){
+                            Location location = new Location(row, col);
+                            Plant plant = new SmallPlants(field, location);
+                            plants.add(plant);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     /**
      * Randomly populate the field with foxes and rabbits.
      */
@@ -197,6 +227,11 @@ public class Simulator
                         animals.add(predator);
                     }
                 }
+                else if(rand.nextDouble() <= SMALL_PLANT_CREATION_PROBABILITY){
+                    Location location = new Location(row, col);
+                    Plant plant = new Tree(field, location);
+                    plants.add(plant);
+                } 
                 else if(rand.nextDouble() <= TREE_CREATION_PROBABILITY){
                     Location location = new Location(row, col);
                     Plant plant = new SmallPlants(field, location);
@@ -218,11 +253,6 @@ public class Simulator
                         Prey prey = new Squirrel(false, field, location, preyGender);
                         animals.add(prey);
                     }
-                }
-                else if(rand.nextDouble() <= SMALL_PLANT_CREATION_PROBABILITY){
-                    Location location = new Location(row, col);
-                    Plant plant = new Tree(field, location);
-                    plants.add(plant);
                 }
                 // else leave the location empty.
             }

@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.Random;
 import java.awt.Color;
+import java.util.Iterator;
 
 /**
  * A simple model of a rabbit.
@@ -25,6 +26,10 @@ public abstract class Prey extends Animal
     protected Random rand = Randomizer.getRandom();
     
     protected boolean isAsleep;
+    
+    protected int foodLevel;
+    
+    protected int PLANT_FOOD_VALUE;
     
     // Individual characteristics (instance fields).
     
@@ -82,6 +87,43 @@ public abstract class Prey extends Animal
         if(age > MAX_AGE) {
             setDead();
         }
+    }
+    
+    /**
+     * Make this fox more hungry. This could result in the fox's death.
+     */
+    private void incrementHunger()
+    {
+        foodLevel--;
+        if(foodLevel <= 0) {
+            setDead();
+        }
+    }
+
+
+    /**
+     * Look for prey adjacent to the current location.
+     * Only the first live rabbit is eaten.
+     * @return Where food was found, or null if it wasn't.
+     */
+    private Location findFood()
+    {
+        Field field = getField();
+        List<Location> adjacent = field.adjacentLocations(getLocation());
+        Iterator<Location> it = adjacent.iterator();
+        while(it.hasNext()) {
+            Location where = it.next();
+            Object plant = field.getObjectAt(where);
+            if(plant instanceof Plant) {
+                Plant smallPlant = (SmallPlants) plant;
+                if(smallPlant.isAlive()) {
+                    smallPlant.setDead();
+                    foodLevel += PLANT_FOOD_VALUE;
+                    return where;
+                }
+            }
+        }
+        return null;
     }
     
     /**
