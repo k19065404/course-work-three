@@ -15,6 +15,9 @@ public abstract class Plant
     // The animal's position in the field.
     private Location location;
     
+    protected int age;
+    protected int MAX_AGE;
+    
     /**
      * Create a new plant at location in field.
      * 

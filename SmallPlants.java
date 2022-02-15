@@ -5,29 +5,22 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class SmallPlants
+public class SmallPlants extends Plant
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class SmallPlants
-     */
-    public SmallPlants()
-    {
-        // initialise instance variables
-        x = 0;
+    private int foodvalue;
+    
+    public SmallPlants(Field field, Location location){
+        super(field, location);
+        age = 0;
+        MAX_AGE = 6;
+        foodvalue = 1;
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    
+    public void incrementAge(){
+        age++;
+        foodvalue++;
+        if(age > MAX_AGE) {
+            setDead();
+        }
     }
 }

@@ -21,18 +21,25 @@ public class Simulator
     // The probability that a fox will be created in any given grid position.
     private static final double PREDATOR_CREATION_PROBABILITY = 0.03;
     // The probability that a rabbit will be created in any given grid position.
-    private static final double PREY_CREATION_PROBABILITY = 0.06;    
+    private static final double PREY_CREATION_PROBABILITY = 0.06; 
+    // The probability that a small plant will be created in any given grid position.
+    private static final double SMALL_PLANT_CREATION_PROBABILITY = 0.08;
+    // The probability that a Tree will be created in any given grid position.
+    private static final double TREE_CREATION_PROBABILITY = 0.04;
+    
 
     // List of animals in the field.
     private List<Animal> animals;
+    // List of plants in the field
+    private List<Plant> plants;
+    
     // The current state of the field.
     private Field field;
     // The current step of the simulation.
     private int step;
     // object of time class.
     private Time time = new Time();
-    // List of plants in the field
-    private List<Plant> plants;
+    
 
     // current time in string formate.
     private String currentTime;
@@ -63,6 +70,7 @@ public class Simulator
         }
 
         animals = new ArrayList<>();
+        plants = new ArrayList<>();
         field = new Field(depth, width);
 
         // Create a view of the state of each location in the field.
@@ -73,7 +81,7 @@ public class Simulator
         view.setColor(Owl.class, Color.red);
         view.setColor(Fox.class, Color.black);
         view.setColor(Squirrel.class, Color.pink);
-        view.setColor(SmallPlants.class, Color.green);
+        view.setColor(Tree.class, Color.green);
 
         // Setup a valid starting point.
         reset();
@@ -189,6 +197,11 @@ public class Simulator
                         animals.add(predator);
                     }
                 }
+                else if(rand.nextDouble() <= TREE_CREATION_PROBABILITY){
+                    Location location = new Location(row, col);
+                    Plant plant = new SmallPlants(field, location);
+                    plants.add(plant);
+                }
                 else if(rand.nextDouble() <= PREY_CREATION_PROBABILITY) {
                     int prey1 = rand.nextInt(3);
                     boolean preyGender = randGender.nextBoolean();
@@ -205,6 +218,11 @@ public class Simulator
                         Prey prey = new Squirrel(false, field, location, preyGender);
                         animals.add(prey);
                     }
+                }
+                else if(rand.nextDouble() <= SMALL_PLANT_CREATION_PROBABILITY){
+                    Location location = new Location(row, col);
+                    Plant plant = new Tree(field, location);
+                    plants.add(plant);
                 }
                 // else leave the location empty.
             }

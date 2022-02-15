@@ -7,11 +7,17 @@
  */
 public class Tree extends Plant
 {
+    
     public Tree(Field field, Location location){
         super(field, location);
+        age = 0;
+        MAX_AGE = 60;
     }
     
     public void incrementAge(){
-        
+        age++;
+        if(age > MAX_AGE) {
+            setDead();
+        }
     }
 }
