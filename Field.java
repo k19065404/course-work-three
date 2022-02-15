@@ -89,32 +89,45 @@ public class Field
         return getObjectAt(location.getRow(), location.getCol());
     }
 
+    private Object getObjectType(Object object){
+        if (object != null) {
+            if (object.getClass() == Animal.class){
+                return (Animal) object;
+            } else if (object.getClass() == Plant.class){
+                return (Plant) object;
+            } else {
+                return null;
+            }
+        }
+        return null;
+    }
+
     public List<Animal> getAnimalAt(Location location){
         Animal foundAnimal;
         Object object;
         List<Location> locations = adjacentLocations(location);
         List<Animal> foundAnimals = new ArrayList<>();
-        
-        
+
         for (int i = 0; i < locations.size(); i++) {
             object = getObjectAt(locations.get(i));
-            if (object != null){
+            object = getObjectType(object);
+            if (object != null && (object.getClass() == Animal.class)){
                 foundAnimal = (Animal) object;
                 foundAnimals.add(foundAnimal);
             }
         }
-        
+
         return foundAnimals;
     }
 
-        /**
-         * Return the animal at the given location, if any.
-         * @param row The desired row.
-         * @param col The desired column.
-         * @return The animal at the given location, or null if there is none.
-         */
-        public Object getObjectAt(int row, int col)
-        {
+    /**
+     * Return the animal at the given location, if any.
+     * @param row The desired row.
+     * @param col The desired column.
+     * @return The animal at the given location, or null if there is none.
+     */
+    public Object getObjectAt(int row, int col)
+    {
         return field[row][col];
     }
 
