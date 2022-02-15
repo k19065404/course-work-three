@@ -1,19 +1,19 @@
 
 /**
- * Write a description of class Plants here.
+ * Write a description of class SmallPlants here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Plants
+public class SmallPlants
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class Plants
+     * Constructor for objects of class SmallPlants
      */
-    public Plants()
+    public SmallPlants()
     {
         // initialise instance variables
         x = 0;

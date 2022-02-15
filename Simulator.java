@@ -31,6 +31,8 @@ public class Simulator
     private int step;
     // object of time class.
     private Time time = new Time();
+    // List of plants in the field
+    private List<Plant> plants;
 
     // current time in string formate.
     private String currentTime;
@@ -65,12 +67,13 @@ public class Simulator
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
-        view.setColor(Rabbit.class, Color.green);
+        view.setColor(Rabbit.class, Color.yellow);
         view.setColor(Mouse.class, Color.blue);
         view.setColor(Hawk.class, Color.orange);
         view.setColor(Owl.class, Color.red);
         view.setColor(Fox.class, Color.black);
         view.setColor(Squirrel.class, Color.pink);
+        view.setColor(SmallPlants.class, Color.green);
 
         // Setup a valid starting point.
         reset();
@@ -123,10 +126,24 @@ public class Simulator
                 it.remove();
             }
         }
+        
+        List<Plant> newPlants = new ArrayList<>();
+        
+        for(Iterator<Plant> it = plants.iterator(); it.hasNext();){
+            Plant plant = it.next();
+            if(step % 48 == 0){
+                plant.incrementAge();
+            }
+
+            if(! plant.isAlive()) {
+                it.remove();
+            }
+        }
 
         
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newAnimals);
+        plants.addAll(newPlants);
 
         view.showStatus(step, field, currentTime);
     }
