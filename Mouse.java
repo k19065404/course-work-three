@@ -17,7 +17,7 @@ public class Mouse extends Prey
         age = 0;
         BREEDING_AGE = 2;
         MAX_AGE = 6;
-        BREEDING_PROBABILITY = 0.3;
+        BREEDING_PROBABILITY = 0.6;
         MAX_LITTER_SIZE = 10;
         isAsleep = false;
         colour = Color.red;
@@ -62,6 +62,7 @@ public class Mouse extends Prey
                 boolean gender = rand.nextBoolean();
                 Prey young = new Mouse(false, field, loc, gender);
                 newPrey.add(young);
+                System.out.println("mouse born");
             }
         }
     }

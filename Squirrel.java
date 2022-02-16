@@ -17,7 +17,7 @@ public class Squirrel extends Prey
         age = 0;
         BREEDING_AGE = 2;
         MAX_AGE = 100;
-        BREEDING_PROBABILITY = 0.8;
+        BREEDING_PROBABILITY = 0.9;
         MAX_LITTER_SIZE = 100;
         isAsleep = false;
         colour = Color.orange;
@@ -64,6 +64,7 @@ public class Squirrel extends Prey
                 boolean gender = rand.nextBoolean();
                 Prey young = new Mouse(false, field, loc, gender);
                 newSquirrel.add(young);
+                System.out.println("squirrel born");
             }
         }
     }

@@ -17,7 +17,7 @@ public class Rabbit extends Prey
         age = 0;
         BREEDING_AGE = 1;
         MAX_AGE = 6;
-        BREEDING_PROBABILITY = 0.4;
+        BREEDING_PROBABILITY = 0.8;
         MAX_LITTER_SIZE = 4;
         isAsleep = false;
         colour = Color.orange;
@@ -63,6 +63,7 @@ public class Rabbit extends Prey
                 boolean gender = rand.nextBoolean();
                 Prey young = new Rabbit(false, field, loc, gender);
                 newRabbits.add(young);
+                System.out.println("rabbit born");
             }
         }
     }

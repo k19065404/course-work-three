@@ -19,11 +19,11 @@ public class Simulator
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 80;
     // The probability that a fox will be created in any given grid position.
-    private static final double PREDATOR_CREATION_PROBABILITY = 0.03;
+    private static final double PREDATOR_CREATION_PROBABILITY = 0.06;
     // The probability that a rabbit will be created in any given grid position.
-    private static final double PREY_CREATION_PROBABILITY = 0.06; 
+    private static final double PREY_CREATION_PROBABILITY = 0.12; 
     // The probability that a small plant will be created in any given grid position.
-    private static final double SMALL_PLANT_CREATION_PROBABILITY = 0.04;
+    private static final double SMALL_PLANT_CREATION_PROBABILITY = 0.01;
     // The probability that a Tree will be created in any given grid position.
     private static final double TREE_CREATION_PROBABILITY = 0.08;
     
@@ -149,7 +149,7 @@ public class Simulator
             }
         }
         
-        spawnPlants(step);
+        //spawnPlants(step);
         
 
         
@@ -174,17 +174,19 @@ public class Simulator
     }
 
     private void spawnPlants(int step){
-        Random rand = Randomizer.getRandom();
+        Random rand;
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++){
+                rand  = Randomizer.getRandom();
                 if(field.getObjectAt(row,col) == null){
-                    if(step % 576 == 0){
-                        if(rand.nextDouble() <= TREE_CREATION_PROBABILITY){
+                    if(step % 390 == 0){
+                        boolean randbool = rand.nextBoolean();
+                        if(randbool){
                             Location location = new Location(row, col);
                             Plant plant = new SmallPlants(field, location);
                             plants.add(plant);
-                        }
                     } 
+                }
                     else if(step % 192 == 0){
                         if(rand.nextDouble() <= SMALL_PLANT_CREATION_PROBABILITY){
                             Location location = new Location(row, col);
@@ -207,7 +209,12 @@ public class Simulator
         field.clear();
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
-                if(rand.nextDouble() <= PREDATOR_CREATION_PROBABILITY) {
+                if(rand.nextDouble() <= SMALL_PLANT_CREATION_PROBABILITY){
+                    Location location = new Location(row, col);
+                    Plant plant = new Tree(field, location);
+                    plants.add(plant);
+                } 
+                else if(rand.nextDouble() <= PREDATOR_CREATION_PROBABILITY) {
                     int predator1 = rand.nextInt(3);
                     boolean predatorGender = randGender.nextBoolean();
                     if(predator1 == 0){
@@ -225,11 +232,6 @@ public class Simulator
                         animals.add(predator);
                     }
                 }
-                else if(rand.nextDouble() <= SMALL_PLANT_CREATION_PROBABILITY){
-                    Location location = new Location(row, col);
-                    Plant plant = new Tree(field, location);
-                    plants.add(plant);
-                } 
                 else if(rand.nextDouble() <= TREE_CREATION_PROBABILITY){
                     Location location = new Location(row, col);
                     Plant plant = new SmallPlants(field, location);
