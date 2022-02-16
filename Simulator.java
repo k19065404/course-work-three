@@ -23,7 +23,7 @@ public class Simulator
     // The probability that a rabbit will be created in any given grid position.
     private static final double PREY_CREATION_PROBABILITY = 0.12; 
     // The probability that a small plant will be created in any given grid position.
-    private static final double SMALL_PLANT_CREATION_PROBABILITY = 0.01;
+    private static final double SMALL_PLANT_CREATION_PROBABILITY = 0.00005;
     // The probability that a Tree will be created in any given grid position.
     private static final double TREE_CREATION_PROBABILITY = 0.08;
     

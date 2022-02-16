@@ -23,7 +23,7 @@ public class Squirrel extends Prey
         colour = Color.orange;
         Species = "Rabbit";
         PLANT_FOOD_VALUE = 4;
-        foodLevel = 6;
+        foodLevel = 50;
 
 
         if(randomAge){
@@ -52,6 +52,7 @@ public class Squirrel extends Prey
         
         List<Location> free = field.getFreeAdjacentLocations(getLocation());
         for(int i = 0; i<foundAnimals.size(); i++){
+            System.out.println("prey found");
             if(foundAnimals.get(i).getSpecies().equals(this.getSpecies()) && foundAnimals.get(i).getGender() != this.getGender()){
                 breadable = true;
                 System.out.println("mouse pair found");

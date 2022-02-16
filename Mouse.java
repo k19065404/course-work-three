@@ -16,14 +16,14 @@ public class Mouse extends Prey
         super(field, location, gender);
         age = 0;
         BREEDING_AGE = 2;
-        MAX_AGE = 6;
-        BREEDING_PROBABILITY = 0.6;
+        MAX_AGE = 50;
+        BREEDING_PROBABILITY = 0.9;
         MAX_LITTER_SIZE = 10;
         isAsleep = false;
         colour = Color.red;
         species = "Mouse";
         PLANT_FOOD_VALUE = 4;
-        foodLevel = 6;
+        foodLevel = 50;
         
         if(randomAge){
             age = rand.nextInt(MAX_AGE);
@@ -50,6 +50,7 @@ public class Mouse extends Prey
         
         List<Location> free = field.getFreeAdjacentLocations(getLocation());
         for(int i = 0; i<foundAnimals.size(); i++){
+            System.out.println("prey found");
             if(foundAnimals.get(i).getSpecies().equals(this.getSpecies()) && foundAnimals.get(i).getGender() != this.getGender()){
                 breadable = true;
                 System.out.println("mouse pair found");
