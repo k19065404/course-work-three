@@ -15,13 +15,13 @@ public class Simulator
 {
     // Constants representing configuration information for the simulation.
     // The default width for the grid.
-    private static final int DEFAULT_WIDTH = 120;
+    private static final int DEFAULT_WIDTH = 100;
     // The default depth of the grid.
-    private static final int DEFAULT_DEPTH = 80;
+    private static final int DEFAULT_DEPTH = 100;
     // The probability that a fox will be created in any given grid position.
     private static final double PREDATOR_CREATION_PROBABILITY = 0.06;
     // The probability that a rabbit will be created in any given grid position.
-    private static final double PREY_CREATION_PROBABILITY = 0.12; 
+    private static final double PREY_CREATION_PROBABILITY = 0.5; 
     // The probability that a small plant will be created in any given grid position.
     private static final double SMALL_PLANT_CREATION_PROBABILITY = 0.00005;
     // The probability that a Tree will be created in any given grid position.
@@ -175,28 +175,31 @@ public class Simulator
 
     private void spawnPlants(int step){
         Random rand;
-        for(int row = 0; row < field.getDepth(); row++) {
-            for(int col = 0; col < field.getWidth(); col++){
-                rand  = Randomizer.getRandom();
-                if(field.getObjectAt(row,col) == null){
-                    if(step % 390 == 0){
-                        boolean randbool = rand.nextBoolean();
-                        if(randbool){
-                            Location location = new Location(row, col);
-                            Plant plant = new SmallPlants(field, location);
-                            plants.add(plant);
-                    } 
-                }
-                    else if(step % 192 == 0){
-                        if(rand.nextDouble() <= SMALL_PLANT_CREATION_PROBABILITY){
-                            Location location = new Location(row, col);
-                            Plant plant = new SmallPlants(field, location);
-                            plants.add(plant);
+            for(int row = 0; row < field.getDepth(); row++) {
+                for(int col = 0; col < field.getWidth(); col++){
+                    rand  = Randomizer.getRandom();
+                    if(field.getObjectAt(row,col) == null){
+                        if(step % 390 == 0){
+                            boolean randbool = rand.nextBoolean();
+                            if(randbool){
+                                Location location = new Location(row, col);
+                                Plant plant = new SmallPlants(field, location);
+                                plants.add(plant);
+                        } 
+                    }
+                        else if(step % 192 == 0){
+                            boolean randbool = rand.nextBoolean();
+                            if(randbool){
+                                if(rand.nextDouble() <= SMALL_PLANT_CREATION_PROBABILITY){
+                                    Location location = new Location(row, col);
+                                    Plant plant = new SmallPlants(field, location);
+                                    plants.add(plant);
+                                }
+                            }
                         }
                     }
                 }
             }
-        }
     }
     
     /**
@@ -210,9 +213,11 @@ public class Simulator
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
                 if(rand.nextDouble() <= SMALL_PLANT_CREATION_PROBABILITY){
-                    Location location = new Location(row, col);
-                    Plant plant = new Tree(field, location);
-                    plants.add(plant);
+                    
+                        Location location = new Location(row, col);
+                        Plant plant = new Tree(field, location);
+                        plants.add(plant);
+                    
                 } 
                 else if(rand.nextDouble() <= PREDATOR_CREATION_PROBABILITY) {
                     int predator1 = rand.nextInt(3);
@@ -233,26 +238,29 @@ public class Simulator
                     }
                 }
                 else if(rand.nextDouble() <= TREE_CREATION_PROBABILITY){
-                    Location location = new Location(row, col);
-                    Plant plant = new SmallPlants(field, location);
-                    plants.add(plant);
+                    
+                        Location location = new Location(row, col);
+                        Plant plant = new SmallPlants(field, location);
+                        plants.add(plant);
+                    
                 }
                 else if(rand.nextDouble() <= PREY_CREATION_PROBABILITY) {
                     int prey1 = rand.nextInt(3);
+                    prey1 = 0;
                     boolean preyGender = randGender.nextBoolean();
                     if(prey1 == 0){
                         Location location = new Location(row, col);
                         Prey prey = new Mouse(false, field, location, preyGender);
-                        animals.add(prey);
-                    } else if(prey1 == 1){
-                        Location location = new Location(row, col);
-                        Prey prey = new Rabbit(false, field, location, preyGender);
-                        animals.add(prey);
-                    } else{
-                        Location location = new Location(row, col);
-                        Prey prey = new Squirrel(false, field, location, preyGender);
-                        animals.add(prey);
-                    }
+                        animals.add(prey);}
+                    // } else if(prey1 == 1){
+                        // Location location = new Location(row, col);
+                        // Prey prey = new Rabbit(false, field, location, preyGender);
+                        // animals.add(prey);
+                    // } else{
+                        // Location location = new Location(row, col);
+                        // Prey prey = new Squirrel(false, field, location, preyGender);
+                        // animals.add(prey);
+                    // }
                 }
                 // else leave the location empty.
             }

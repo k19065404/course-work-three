@@ -106,14 +106,19 @@ public class Field
         Animal foundAnimal;
         Object object;
         List<Location> locations = adjacentLocations(location);
+        System.out.println(locations.size());
         List<Animal> foundAnimals = new ArrayList<>();
 
         for (int i = 0; i < locations.size(); i++) {
             object = getObjectAt(locations.get(i));
             object = getObjectType(object);
+            System.out.println(object);
+            if(object != null)
+                System.out.println(object.getClass());
             if (object != null && (object.getClass() == Animal.class)){
                 foundAnimal = (Animal) object;
                 foundAnimals.add(foundAnimal);
+                System.out.println("animal found");
             } 
         }
 
@@ -156,6 +161,11 @@ public class Field
         List<Location> adjacent = adjacentLocations(location);
         for(Location next : adjacent) {
             if(getObjectAt(next) == null) {
+                free.add(next);
+            } else if(getObjectAt(next).getClass() == Plant.class){
+                Plant plant = (Plant) getObjectAt(next);
+                plant.setDead();
+                
                 free.add(next);
             }
         }

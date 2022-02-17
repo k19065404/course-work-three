@@ -54,7 +54,7 @@ public class Mouse extends Prey
             if(foundAnimals.get(i).getSpecies().equals(this.getSpecies()) && foundAnimals.get(i).getGender() != this.getGender()){
                 breadable = true;
                 System.out.println("mouse pair found");
-                break;
+                //break;
             }
         }
         if(breadable){
