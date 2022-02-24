@@ -9,6 +9,7 @@ public class Location
     // Row and column positions.
     private int row;
     private int col;
+    private boolean isPlant = false;
 
     /**
      * Represent a row and column.
@@ -69,5 +70,13 @@ public class Location
     public int getCol()
     {
         return col;
+    }
+    
+    public void setIsPlant(boolean value){
+        isPlant = value;
+    }
+    
+    public boolean getIsPlant(){
+        return isPlant;
     }
 }

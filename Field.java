@@ -86,40 +86,61 @@ public class Field
      */
     public Object getObjectAt(Location location)
     {
-        return getObjectAt(location.getRow(), location.getCol());
+        if (!location.getIsPlant()){
+            System.out.println("NOT PLANT");
+            return getObjectAt(location.getRow(), location.getCol());
+        } else {
+            System.out.println("IS A PLANT");
+            return null;
+        }
+        
     }
 
     private Object getObjectType(Object object){
         if (object != null) {
             if (object.getClass() == Animal.class){
-                return (Animal) object;
+                System.out.println("Animal");
+                object = (Animal) object;
             } else if (object.getClass() == Plant.class){
-                return (Plant) object;
+                System.out.println("plant");
+                object = (Plant) object;
             } else {
-                return null;
+                System.out.println("object found null");
+                object = null;
             }
         }
-        return null;
+        return object;
     }
 
     public List<Animal> getAnimalAt(Location location){
         Animal foundAnimal;
         Object object;
         List<Location> locations = adjacentLocations(location);
-        System.out.println(locations.size());
+        System.out.println("locations " + locations.size());
         List<Animal> foundAnimals = new ArrayList<>();
 
         for (int i = 0; i < locations.size(); i++) {
-            object = getObjectAt(locations.get(i));
-            object = getObjectType(object);
-            System.out.println(object);
-            if(object != null)
-                System.out.println(object.getClass());
-            if (object != null && (object.getClass() == Animal.class)){
-                foundAnimal = (Animal) object;
-                foundAnimals.add(foundAnimal);
-                System.out.println("animal found");
-            } 
+            System.out.println("Plant? " + locations.get(i).getIsPlant());
+            if (locations.get(i).getIsPlant() == false){
+                object = getObjectAt(locations.get(i));
+                System.out.println("Location not plant and checked");
+                if (object != null){
+                    foundAnimal = (Animal) object;
+                    foundAnimals.add(foundAnimal);
+                    System.out.println(foundAnimal.getSpecies() + " found");
+                }
+            }
+            // object = getObjectAt(locations.get(i));
+            // //object = getObjectType(object);
+            // //System.out.println(object.class);
+            // System.out.println(object);
+            // if(object != null)
+                // //System.out.println(object.getClass());
+            // if (object != null && (object.getClass() == Animal.class)){
+                // foundAnimal = (Animal) object;
+                // foundAnimals.add(foundAnimal);
+                // System.out.println("animal found");
+            // } 
         }
 
         return foundAnimals;
@@ -214,6 +235,7 @@ public class Field
                         int nextCol = col + coffset;
                         // Exclude invalid locations and the original location.
                         if(nextCol >= 0 && nextCol < width && (roffset != 0 || coffset != 0)) {
+                            
                             locations.add(new Location(nextRow, nextCol));
                         }
                     }

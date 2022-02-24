@@ -11,7 +11,7 @@ public class SmallPlants extends Plant
     
     public SmallPlants(Field field, Location location){
         super(field, location);
-        
+        location.setIsPlant(true);
         randomAge = random.nextBoolean();
         if(randomAge){
            age = random.nextInt(4); 
@@ -22,6 +22,8 @@ public class SmallPlants extends Plant
         
         MAX_AGE = 6;
         foodValue = 1;
+        
+        System.out.println("Small plant isPlant : " + location.getIsPlant());
     }
     
     public void incrementAge(){

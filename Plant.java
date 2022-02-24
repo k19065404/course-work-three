@@ -35,6 +35,8 @@ public abstract class Plant
         
         setLocation(location);
         
+        location.setIsPlant(true);
+        //location.toggleIsPlant();
     }
     
     /**
@@ -86,6 +88,8 @@ public abstract class Plant
         }
         location = newLocation;
         field.place(this, newLocation);
+        //newLocation.setIsPlant(true);
+        //System.out.println("PLANT LOCATION SET: " + newLocation.getIsPlant());
     }
     
     /**
