@@ -149,7 +149,7 @@ public class Simulator
             }
         }
         
-        //spawnPlants(step);
+        spawnPlants(step);
         
 
         
@@ -189,7 +189,7 @@ public class Simulator
                                 plants.add(plant);
                         } 
                     }
-                        else if(step % 192 == 0){
+                        else if(step % 96 == 0){
                             boolean randbool = rand.nextBoolean();
                             if(randbool){
                                 if(rand.nextDouble() <= SMALL_PLANT_CREATION_PROBABILITY){

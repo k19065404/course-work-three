@@ -22,7 +22,7 @@ public class Mouse extends Prey
         isAsleep = false;
         colour = Color.red;
         species = "Mouse";
-        PLANT_FOOD_VALUE = 4;
+        PLANT_FOOD_VALUE = 10;
         foodLevel = 50;
         
         if(randomAge){

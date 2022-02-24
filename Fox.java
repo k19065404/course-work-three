@@ -15,9 +15,9 @@ public class Fox extends Predator
         super(field, location, gender);
         BREEDING_AGE = 3;
         MAX_AGE = 5;
-        BREEDING_PROBABILITY = 0.2;
+        BREEDING_PROBABILITY = 0.1;
         MAX_LITTER_SIZE = 1;
-        PREY_FOOD_VALUE = 10;
+        PREY_FOOD_VALUE = 6;
         age = 0;
         isAsleep = false;
         colour = Color.orange;

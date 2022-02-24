@@ -14,9 +14,9 @@ public class Hawk extends Predator
         super(field, location, gender);
         BREEDING_AGE = 3;
         MAX_AGE = 10;
-        BREEDING_PROBABILITY = 0.2;
+        BREEDING_PROBABILITY = 0.1;
         MAX_LITTER_SIZE = 2;
-        PREY_FOOD_VALUE = 8;
+        PREY_FOOD_VALUE = 6;
         isAsleep = false;
         age = 0;
         colour = Color.green;

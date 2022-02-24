@@ -22,7 +22,7 @@ public class Rabbit extends Prey
         isAsleep = false;
         colour = Color.orange;
         Species = "Rabbit";
-        PLANT_FOOD_VALUE = 4;
+        PLANT_FOOD_VALUE = 10;
         foodLevel = 50;
 
         if(randomAge){
