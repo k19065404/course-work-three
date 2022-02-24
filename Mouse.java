@@ -15,9 +15,9 @@ public class Mouse extends Prey
     public Mouse(boolean randomAge, Field field, Location location, boolean gender){
         super(field, location, gender);
         age = 0;
-        BREEDING_AGE = 2;
+        BREEDING_AGE = 0;
         MAX_AGE = 50;
-        BREEDING_PROBABILITY = 0.9;
+        BREEDING_PROBABILITY = 0.6;
         MAX_LITTER_SIZE = 10;
         isAsleep = false;
         colour = Color.red;
@@ -71,9 +71,9 @@ public class Mouse extends Prey
     
     private int breed(){
         int births = 0;
-        //if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
             births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        //}
+        }
         return births;
     }
     

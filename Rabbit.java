@@ -15,10 +15,10 @@ public class Rabbit extends Prey
     public Rabbit(boolean randomAge, Field field, Location location, boolean gender){
         super(field, location, gender);
         age = 0;
-        BREEDING_AGE = 1;
+        BREEDING_AGE = 0;
         MAX_AGE = 50;
         BREEDING_PROBABILITY = 0.9;
-        MAX_LITTER_SIZE = 4;
+        MAX_LITTER_SIZE = 20;
         isAsleep = false;
         colour = Color.orange;
         Species = "Rabbit";
@@ -73,9 +73,9 @@ public class Rabbit extends Prey
     private int breed()
     {
         int births = 0;
-        //if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
             births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        //}
+        }
         return births;
     }
 

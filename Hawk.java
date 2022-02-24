@@ -14,7 +14,7 @@ public class Hawk extends Predator
         super(field, location, gender);
         BREEDING_AGE = 3;
         MAX_AGE = 10;
-        BREEDING_PROBABILITY = 0.9;
+        BREEDING_PROBABILITY = 0.2;
         MAX_LITTER_SIZE = 2;
         PREY_FOOD_VALUE = 8;
         isAsleep = false;
@@ -68,9 +68,9 @@ public class Hawk extends Predator
     private int breed()
     {
         int births = 0;
-        //if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
             births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        //}
+        }
         return births;
     }
     

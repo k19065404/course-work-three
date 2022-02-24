@@ -15,7 +15,7 @@ public class Squirrel extends Prey
     public Squirrel(boolean randomAge, Field field, Location location, boolean gender){
         super(field, location, gender);
         age = 0;
-        BREEDING_AGE = 2;
+        BREEDING_AGE = 0;
         MAX_AGE = 100;
         BREEDING_PROBABILITY = 0.9;
         MAX_LITTER_SIZE = 100;
