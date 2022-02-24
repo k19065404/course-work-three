@@ -121,8 +121,8 @@ public class Field
 
         for (int i = 0; i < locations.size(); i++) {
             System.out.println("Plant? " + locations.get(i).getIsPlant());
-            if (locations.get(i).getIsPlant() == false){
-                object = getObjectAt(locations.get(i));
+            object = getObjectAt(locations.get(i));
+            if (locations.get(i).getIsPlant() == false && !(object instanceof Plant)){
                 System.out.println("Location not plant and checked");
                 if (object != null){
                     foundAnimal = (Animal) object;

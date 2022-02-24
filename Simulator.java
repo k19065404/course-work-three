@@ -248,6 +248,7 @@ public class Simulator
                     int prey1 = rand.nextInt(3);
                     prey1 = 0;
                     boolean preyGender = randGender.nextBoolean();
+                    System.out.println(preyGender);
                     if(prey1 == 0){
                         Location location = new Location(row, col);
                         Prey prey = new Mouse(false, field, location, preyGender);

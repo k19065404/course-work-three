@@ -10,7 +10,7 @@ import java.util.List;
 public class Squirrel extends Prey
 {
 
-    private static String species = "rabbit"; 
+    private static String species = "squirrel"; 
     
     public Squirrel(boolean randomAge, Field field, Location location, boolean gender){
         super(field, location, gender);
@@ -65,7 +65,7 @@ public class Squirrel extends Prey
             for(int b = 0; b < births && free.size() > 0; b++) {
                 Location loc = free.remove(0);
                 boolean gender = rand.nextBoolean();
-                Prey young = new Mouse(false, field, loc, gender);
+                Prey young = new Squirrel(false, field, loc, gender);
                 newSquirrel.add(young);
                 System.out.println("squirrel born");
             }
