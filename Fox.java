@@ -15,7 +15,7 @@ public class Fox extends Predator
         super(field, location, gender);
         BREEDING_AGE = 2;
         MAX_AGE = 5;
-        BREEDING_PROBABILITY = 0.21;
+        BREEDING_PROBABILITY = 0.9;
         MAX_LITTER_SIZE = 2;
         PREY_FOOD_VALUE = 10;
         age = 0;
@@ -53,6 +53,7 @@ public class Fox extends Predator
                 break;
             }
         }
+        System.out.println("breedable: " + breadable);
         if(breadable){
             int births = breed();
             for(int b = 0; b < births && free.size() > 0; b++) {
@@ -66,9 +67,9 @@ public class Fox extends Predator
     private int breed()
     {
         int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+        //if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
             births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        }
+        //}
         return births;
     }
 

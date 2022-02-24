@@ -71,9 +71,9 @@ public class Mouse extends Prey
     
     private int breed(){
         int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+        //if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
             births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        }
+        //}
         return births;
     }
     
