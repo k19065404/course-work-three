@@ -16,7 +16,14 @@ public abstract class Animal
     private Location location;
     //determines the gender
     protected boolean isFemale;
-    
+    protected int BREEDING_AGE;
+    protected int MAX_AGE;
+    protected double BREEDING_PROBABILITY;
+    protected int MAX_LITTER_SIZE;
+    protected int og_BREEDING_AGE;
+    protected int og_MAX_AGE;
+    protected double og_BREEDING_PROBABILITY;
+    protected int og_MAX_LITTER_SIZE;
     
     protected String Species;
     
@@ -112,5 +119,26 @@ public abstract class Animal
     public String getSpecies(){
         return Species;
     }
-}
+    
+    public void changeWeather(String weather){
+        setOriginal();
+        if (weather.equals("sun")){
+            MAX_LITTER_SIZE= og_MAX_LITTER_SIZE *3;
+        } else if (weather.equals("rain")){
+            BREEDING_PROBABILITY= og_BREEDING_PROBABILITY * 2;
+        } else if (weather.equals("fog")){
+            BREEDING_PROBABILITY= og_BREEDING_PROBABILITY / 2;
+        } else {
+            MAX_LITTER_SIZE = og_MAX_LITTER_SIZE /2 ;
+        }
+        }
+        
+    protected void setOriginal(){
+        MAX_LITTER_SIZE= og_MAX_LITTER_SIZE;
+        BREEDING_PROBABILITY= og_BREEDING_PROBABILITY;
+        MAX_AGE= og_MAX_AGE;
+        BREEDING_AGE = og_BREEDING_AGE;
+    }
+    }
+
 

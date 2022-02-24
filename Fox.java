@@ -13,17 +13,17 @@ public class Fox extends Predator
     public Fox(boolean randomAge, Field field, Location location, boolean gender){
 
         super(field, location, gender);
-        BREEDING_AGE = 3;
-        MAX_AGE = 5;
-        BREEDING_PROBABILITY = 0.1;
-        MAX_LITTER_SIZE = 1;
+        og_BREEDING_AGE = 3;
+        og_MAX_AGE = 5;
+        og_BREEDING_PROBABILITY = 0.1;
+        og_MAX_LITTER_SIZE = 1;
         PREY_FOOD_VALUE = 6;
         age = 0;
         isAsleep = false;
         colour = Color.orange;
         foodLevel = 60;
         Species = "Fox";
-        
+        this.setOriginal();
         
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);

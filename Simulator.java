@@ -39,6 +39,8 @@ public class Simulator
     private int step;
     // object of time class.
     private Time time = new Time();
+    //object of the weather class
+    private Weather weather = new Weather();
     
 
     // current time in string formate.
@@ -123,11 +125,21 @@ public class Simulator
 
         // Provide space for newborn animals.
         List<Animal> newAnimals = new ArrayList<>();        
+        
+        if (step%48 == 0){
+            weather.changeWeather();
+        }
+        
         // Let all rabbits act.
+        
+        
+        
         for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
             Animal animal = it.next();
             if(step % 48 == 0){
                 animal.incrementAge();
+                animal.changeWeather(weather.getCurrentWeather());
+                
             }
             animal.act(newAnimals, time);
 

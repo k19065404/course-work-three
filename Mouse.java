@@ -15,16 +15,16 @@ public class Mouse extends Prey
     public Mouse(boolean randomAge, Field field, Location location, boolean gender){
         super(field, location, gender);
         age = 0;
-        BREEDING_AGE = 0;
-        MAX_AGE = 50;
-        BREEDING_PROBABILITY = 0.6;
-        MAX_LITTER_SIZE = 10;
+        og_BREEDING_AGE = 0;
+        og_MAX_AGE = 50;
+        og_BREEDING_PROBABILITY = 0.6;
+        og_MAX_LITTER_SIZE = 10;
         isAsleep = false;
         colour = Color.red;
         species = "Mouse";
         PLANT_FOOD_VALUE = 10;
         foodLevel = 50;
-        
+        this.setOriginal();
         if(randomAge){
             age = rand.nextInt(MAX_AGE);
         }

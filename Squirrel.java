@@ -15,16 +15,16 @@ public class Squirrel extends Prey
     public Squirrel(boolean randomAge, Field field, Location location, boolean gender){
         super(field, location, gender);
         age = 0;
-        BREEDING_AGE = 0;
-        MAX_AGE = 100;
-        BREEDING_PROBABILITY = 0.9;
-        MAX_LITTER_SIZE = 100;
+        og_BREEDING_AGE = 0;
+        og_MAX_AGE = 100;
+        og_BREEDING_PROBABILITY = 0.9;
+        og_MAX_LITTER_SIZE = 100;
         isAsleep = false;
         colour = Color.orange;
         Species = "Rabbit";
         PLANT_FOOD_VALUE = 10;
         foodLevel = 50;
-
+        this.setOriginal();
 
         if(randomAge){
             age = rand.nextInt(MAX_AGE);

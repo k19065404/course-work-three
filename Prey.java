@@ -15,13 +15,13 @@ public abstract class Prey extends Animal
     // Characteristics shared by all rabbits (class variables).
 
     // The age at which a rabbit can start to breed.
-    protected int BREEDING_AGE = 5;
-    // The age to which a rabbit can live.
-    protected int MAX_AGE = 40;
-    // The likelihood of a rabbit breeding.
-    protected double BREEDING_PROBABILITY = 0.12;
-    // The maximum number of births.
-    protected int MAX_LITTER_SIZE = 4;
+    // protected int BREEDING_AGE = 5;
+    // // The age to which a rabbit can live.
+    // protected int MAX_AGE = 40;
+    // // The likelihood of a rabbit breeding.
+    // protected double BREEDING_PROBABILITY = 0.12;
+    // // The maximum number of births.
+     // = 4;
     // A shared random number generator to control breeding.
     protected Random rand = Randomizer.getRandom();
     
