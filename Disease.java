@@ -1,19 +1,19 @@
 
 /**
- * Write a description of class weather here.
+ * Write a description of class disease here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class weather
+public class Disease
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class weather
+     * Constructor for objects of class disease
      */
-    public weather()
+    public Disease()
     {
         // initialise instance variables
         x = 0;
