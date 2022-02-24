@@ -66,6 +66,7 @@ public abstract class Plant
             location = null;
             field = null;
         }
+        System.out.println("plant died");
     }
 
     /**

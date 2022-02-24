@@ -69,4 +69,11 @@ public class Time
         }
         return isNight;
     }
+    
+    public void resetTime(){
+        minutes = -1;
+        hours = 0;
+        days = 0;
+        isNight = true;
+    }
 }

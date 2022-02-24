@@ -54,7 +54,7 @@ public class Rabbit extends Prey
             System.out.println("prey found");
             if(foundAnimals.get(i).getSpecies().equals(this.getSpecies()) && foundAnimals.get(i).getGender() != this.getGender()){
                 breadable = true;
-                System.out.println("rabbit pair found");
+                //System.out.println("rabbit pair found");
                 //break;
             }
         }

@@ -30,6 +30,7 @@ public abstract class Prey extends Animal
     protected int foodLevel;
     
     protected int PLANT_FOOD_VALUE;
+    static int counter1p = 0;
     
     // Individual characteristics (instance fields).
     
@@ -135,19 +136,26 @@ public abstract class Prey extends Animal
     private Location findFood()
     {
         Field field = getField();
+        //System.out.println("Fidning prey food");
         List<Location> adjacent = field.adjacentLocations(getLocation());
+        // if(adjacent != null){
+            // System.out.println("adjacent not null");
+        // }
+        
         Iterator<Location> it = adjacent.iterator();
         while(it.hasNext()) {
+            //System.out.println("adjacent has next");
             Location where = it.next();
             Object plant = field.getObjectAt(where);
+            //System.out.println(plant + " " + counter1p++ );
             if(plant instanceof SmallPlants) {
-                System.out.println("small plant exists");
+                //System.out.println("small plant exists");
                 Plant smallPlant = (SmallPlants) plant;
                 if(smallPlant.isAlive()) {
-                    System.out.println("small plant eaten");
+                    //System.out.println("small plant eaten");
                     smallPlant.setDead();
                     foodLevel += PLANT_FOOD_VALUE;
-                    System.out.println("food level increased to " + foodLevel);
+                    //System.out.println("food level increased to " + foodLevel);
                     return where;
                 }
             }

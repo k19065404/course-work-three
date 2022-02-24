@@ -53,7 +53,7 @@ public class Fox extends Predator
                 break;
             }
         }
-        System.out.println("breedable: " + breadable);
+        //System.out.println("breedable: " + breadable);
         if(breadable){
             int births = breed();
             for(int b = 0; b < births && free.size() > 0; b++) {

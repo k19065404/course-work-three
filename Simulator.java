@@ -23,7 +23,7 @@ public class Simulator
     // The probability that a rabbit will be created in any given grid position.
     private static final double PREY_CREATION_PROBABILITY = 0.5; 
     // The probability that a small plant will be created in any given grid position.
-    private static final double SMALL_PLANT_CREATION_PROBABILITY = 0.00005;
+    private static final double SMALL_PLANT_CREATION_PROBABILITY = 0.05;
     // The probability that a Tree will be created in any given grid position.
     private static final double TREE_CREATION_PROBABILITY = 0.08;
     
@@ -168,6 +168,8 @@ public class Simulator
         step = 0;
         animals.clear();
         populate();
+        time.resetTime();
+        currentTime = time.getTime();
 
         // Show the starting state in the view.
         view.showStatus(step, field, currentTime);
@@ -252,16 +254,16 @@ public class Simulator
                     if(prey1 == 0){
                         Location location = new Location(row, col);
                         Prey prey = new Mouse(false, field, location, preyGender);
-                        animals.add(prey);}
-                    // } else if(prey1 == 1){
-                        // Location location = new Location(row, col);
-                        // Prey prey = new Rabbit(false, field, location, preyGender);
-                        // animals.add(prey);
-                    // } else{
-                        // Location location = new Location(row, col);
-                        // Prey prey = new Squirrel(false, field, location, preyGender);
-                        // animals.add(prey);
-                    // }
+                        animals.add(prey);
+                    } else if(prey1 == 1){
+                        Location location = new Location(row, col);
+                        Prey prey = new Rabbit(false, field, location, preyGender);
+                        animals.add(prey);
+                    } else{
+                        Location location = new Location(row, col);
+                        Prey prey = new Squirrel(false, field, location, preyGender);
+                        animals.add(prey);
+                    }
                 }
                 // else leave the location empty.
             }

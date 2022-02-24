@@ -50,10 +50,10 @@ public class Mouse extends Prey
         
         List<Location> free = field.getFreeAdjacentLocations(getLocation());
         for(int i = 0; i<foundAnimals.size(); i++){
-            System.out.println("prey found");
+            //System.out.println("prey found");
             if(foundAnimals.get(i).getSpecies().equals(this.getSpecies()) && foundAnimals.get(i).getGender() != this.getGender()){
                 breadable = true;
-                System.out.println("mouse pair found");
+                //System.out.println("mouse pair found");
                 //break;
             }
         }
@@ -64,7 +64,7 @@ public class Mouse extends Prey
                 boolean gender = rand.nextBoolean();
                 Prey young = new Mouse(false, field, loc, gender);
                 newPrey.add(young);
-                System.out.println("mouse born");
+                //System.out.println("mouse born");
             }
         }
     }

@@ -49,14 +49,14 @@ public class Squirrel extends Prey
         boolean breadable = false;
 
         List <Animal> foundAnimals = field.getAnimalAt(location);
-        System.out.println("Squirrel giveBirth method call");
-        System.out.println(foundAnimals.size());
+        //System.out.println("Squirrel giveBirth method call");
+        //System.out.println(foundAnimals.size());
         List<Location> free = field.getFreeAdjacentLocations(getLocation());
         for(int i = 0; i<foundAnimals.size(); i++){
-            System.out.println("prey found");
+            //System.out.println("prey found");
             if(foundAnimals.get(i).getSpecies().equals(this.getSpecies()) && foundAnimals.get(i).getGender() != this.getGender()){
                 breadable = true;
-                System.out.println("squirrel pair found");
+                //System.out.println("squirrel pair found");
                 //break;
             }
         }
