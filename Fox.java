@@ -49,6 +49,7 @@ public class Fox extends Predator
         for(int i = 0; i<foundAnimals.size(); i++){
             if(foundAnimals.get(i).getSpecies().equals(this.getSpecies()) && foundAnimals.get(i).getGender() != this.getGender()){
                 breadable = true;
+                //System.out.println("is breadable: " + breadable);
                 break;
             }
         }

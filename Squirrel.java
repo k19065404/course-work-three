@@ -56,7 +56,7 @@ public class Squirrel extends Prey
             System.out.println("prey found");
             if(foundAnimals.get(i).getSpecies().equals(this.getSpecies()) && foundAnimals.get(i).getGender() != this.getGender()){
                 breadable = true;
-                System.out.println("mouse pair found");
+                System.out.println("squirrel pair found");
                 //break;
             }
         }

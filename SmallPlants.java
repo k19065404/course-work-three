@@ -23,7 +23,7 @@ public class SmallPlants extends Plant
         MAX_AGE = 6;
         foodValue = 1;
         
-        System.out.println("Small plant isPlant : " + location.getIsPlant());
+        //System.out.println("Small plant isPlant : " + location.getIsPlant());
     }
     
     public void incrementAge(){

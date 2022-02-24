@@ -141,13 +141,13 @@ public abstract class Prey extends Animal
             Location where = it.next();
             Object plant = field.getObjectAt(where);
             if(plant instanceof SmallPlants) {
-                //System.out.println("small plant exists");
+                System.out.println("small plant exists");
                 Plant smallPlant = (SmallPlants) plant;
                 if(smallPlant.isAlive()) {
-                    //System.out.println("small plant eaten");
+                    System.out.println("small plant eaten");
                     smallPlant.setDead();
                     foodLevel += PLANT_FOOD_VALUE;
-                    //System.out.println("food level increased to " + foodLevel);
+                    System.out.println("food level increased to " + foodLevel);
                     return where;
                 }
             }

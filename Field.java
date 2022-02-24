@@ -87,10 +87,10 @@ public class Field
     public Object getObjectAt(Location location)
     {
         if (!location.getIsPlant()){
-            System.out.println("NOT PLANT");
+            //System.out.println("NOT PLANT");
             return getObjectAt(location.getRow(), location.getCol());
         } else {
-            System.out.println("IS A PLANT");
+            //System.out.println("IS A PLANT");
             return null;
         }
         
@@ -116,18 +116,19 @@ public class Field
         Animal foundAnimal;
         Object object;
         List<Location> locations = adjacentLocations(location);
-        System.out.println("locations " + locations.size());
+        //System.out.println("locations " + locations.size());
         List<Animal> foundAnimals = new ArrayList<>();
 
         for (int i = 0; i < locations.size(); i++) {
-            System.out.println("Plant? " + locations.get(i).getIsPlant());
+            //System.out.println("Plant? " + locations.get(i).getIsPlant());
             object = getObjectAt(locations.get(i));
             if (locations.get(i).getIsPlant() == false && !(object instanceof Plant)){
-                System.out.println("Location not plant and checked");
+                //System.out.println("Location not plant and checked");
                 if (object != null){
                     foundAnimal = (Animal) object;
                     foundAnimals.add(foundAnimal);
-                    System.out.println(foundAnimal.getSpecies() + " found");
+                    //System.out.println("Found animal");
+                    //System.out.println(foundAnimal.getSpecies() + " found");
                 }
             }
             // object = getObjectAt(locations.get(i));
