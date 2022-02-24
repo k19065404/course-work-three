@@ -77,6 +77,7 @@ public class Location
     }
     
     public boolean getIsPlant(){
+        System.out.println("direct print" + isPlant);
         return isPlant;
     }
 }
