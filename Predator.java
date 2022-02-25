@@ -15,13 +15,13 @@ public abstract class Predator extends Animal
     // Characteristics shared by all foxes (class variables).
 
     // The age at which a fox can start to breed.
-    protected int BREEDING_AGE;
+    //protected int BREEDING_AGE;
     // The age to which a fox can live.
-    protected int MAX_AGE;
+    //protected int MAX_AGE;
     // The likelihood of a fox breeding.
-    protected double BREEDING_PROBABILITY;
+    //protected double BREEDING_PROBABILITY;
     // The maximum number of births.
-    protected int MAX_LITTER_SIZE;
+    //protected int MAX_LITTER_SIZE;
     // The food value of a single rabbit. In effect, this is the
     // number of steps a fox can go before it has to eat again.
     protected int PREY_FOOD_VALUE;
@@ -116,8 +116,10 @@ public abstract class Predator extends Animal
      */
     public void incrementAge()
     {
-        age++;
+        age = age+1;
+        //System.out.println("Age now: " + age + " Max age: " + MAX_AGE);
         if(age > MAX_AGE) {
+            System.out.println("predator dies of old age");
             setDead();
         }
     }

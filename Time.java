@@ -12,8 +12,8 @@ public class Time
     private boolean isNight;
     
     public Time(){
-        minutes = -1;
-        hours = 0;
+        minutes = 0;
+        hours = 6;
         days = 0;
         isNight = true;
         incrimentMinutes();

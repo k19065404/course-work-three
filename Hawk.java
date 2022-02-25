@@ -69,7 +69,7 @@ public class Hawk extends Predator
     {
         int births = 0;
         if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+            births = rand.nextInt(MAX_LITTER_SIZE+1) + 1;
         }
         return births;
     }

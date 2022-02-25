@@ -28,7 +28,7 @@ public class SimulatorView extends JFrame
     private JLabel stepLabel, population, infoLabel, timeLabel;
     private FieldView fieldView;
     
-    private String time = "0 Days 00:00";
+    private String time = "0 Days 06:00";
     
     // A map for storing colors for participants in the simulation
     private Map<Class, Color> colors;

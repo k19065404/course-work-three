@@ -17,8 +17,8 @@ public class Mouse extends Prey
         age = 0;
         og_BREEDING_AGE = 0;
         og_MAX_AGE = 50;
-        og_BREEDING_PROBABILITY = 0.6;
-        og_MAX_LITTER_SIZE = 10;
+        og_BREEDING_PROBABILITY = 0.4;
+        og_MAX_LITTER_SIZE = 6;
         isAsleep = false;
         colour = Color.red;
         species = "Mouse";

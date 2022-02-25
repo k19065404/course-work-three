@@ -11,11 +11,12 @@ public class Fox extends Predator
 {
 
     public Fox(boolean randomAge, Field field, Location location, boolean gender){
-
+        
         super(field, location, gender);
-        og_BREEDING_AGE = 3;
+        
+        og_BREEDING_AGE = 0;
         og_MAX_AGE = 5;
-        og_BREEDING_PROBABILITY = 0.1;
+        og_BREEDING_PROBABILITY = 0.2;
         og_MAX_LITTER_SIZE = 1;
         PREY_FOOD_VALUE = 6;
         age = 0;
@@ -28,6 +29,8 @@ public class Fox extends Predator
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
         }
+        //System.out.println("This fox is: " + age);
+        
     }
 
     public Color getColor(){
@@ -68,7 +71,8 @@ public class Fox extends Predator
     {
         int births = 0;
         if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+            //System.out.println(MAX_LITTER_SIZE);
+            births = rand.nextInt(MAX_LITTER_SIZE+ 1) +1;
         }
         return births;
     }
