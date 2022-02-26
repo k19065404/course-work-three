@@ -80,9 +80,9 @@ public abstract class Prey extends Animal
         if (!isAsleep){
             incrementHunger();
             if(isAlive()){
-                giveBirth(newPrey);            
+                giveBirth(newPrey);
+                
                 // Move towards a source of food if found.
-
                 Location newLocation = findFood();
                 if(newLocation == null) { 
                     // No food found - try to move to a free location.
@@ -97,7 +97,7 @@ public abstract class Prey extends Animal
                     setDead();
                     //System.out.println("over crowding");
                 }
-
+                Disease(rand.nextDouble());
             }
         }
     }

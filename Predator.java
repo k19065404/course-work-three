@@ -68,7 +68,8 @@ public abstract class Predator extends Animal
         if (!isAsleep){
             incrementHunger();
             if(isAlive()){
-                giveBirth(newPredator);            
+                giveBirth(newPredator);   
+                
                 // Move towards a source of food if found.
 
                 Location newLocation = findFood();
@@ -82,9 +83,10 @@ public abstract class Predator extends Animal
                 }
                 else {
                     // Overcrowding.
-                    //setDead();
-                    //System.out.println("over crowding");
+                    this.setDead();
+                    System.out.println("over crowding");
                 }
+                Disease(rand.nextDouble());
 
             }
         }
@@ -119,7 +121,7 @@ public abstract class Predator extends Animal
         age = age+1;
         //System.out.println("Age now: " + age + " Max age: " + MAX_AGE);
         if(age > MAX_AGE) {
-            System.out.println("predator dies of old age");
+            //System.out.println("predator dies of old age");
             setDead();
         }
     }

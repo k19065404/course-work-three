@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Random;
 
 /**
  * A class representing shared characteristics of animals.
@@ -24,6 +25,9 @@ public abstract class Animal
     protected int og_MAX_AGE;
     protected double og_BREEDING_PROBABILITY;
     protected int og_MAX_LITTER_SIZE;
+    protected double diseaseProbability;
+    protected Random rand = Randomizer.getRandom();
+    protected static int counter = 0;
     
     protected String Species;
     
@@ -39,7 +43,7 @@ public abstract class Animal
         alive = true;
         isFemale = gender;
         this.field = field;
-        
+        diseaseProbability = 0.00001;
         setLocation(location);
         
     }
@@ -138,6 +142,23 @@ public abstract class Animal
         BREEDING_PROBABILITY= og_BREEDING_PROBABILITY;
         MAX_AGE= og_MAX_AGE;
         BREEDING_AGE = og_BREEDING_AGE;
+    }
+    
+    public void Disease(double disease){
+        if(disease < diseaseProbability){
+            double deathProbability = 0.001;
+            double die = rand.nextDouble();
+            counter++;
+            
+            if(die < deathProbability){
+                this.setDead();
+                System.out.println("animal died due to disease: " + counter);
+            } else{
+                this.BREEDING_PROBABILITY = 0;
+                this.MAX_AGE = MAX_AGE/2;
+                System.out.println("animal crippled due to disease: " + counter);
+            }
+        }
     }
     }
 
