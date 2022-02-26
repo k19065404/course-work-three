@@ -184,12 +184,13 @@ public class Field
         for(Location next : adjacent) {
             if(getObjectAt(next) == null) {
                 free.add(next);
-            } else if(getObjectAt(next).getClass() == Plant.class){
-                Plant plant = (Plant) getObjectAt(next);
-                plant.setDead();
+            // } else if(getObjectAt(next).getClass() == Plant.class){
+                // Plant plant = (Plant) getObjectAt(next);
+                // plant.setDead();
                 
-                free.add(next);
-            }
+                // free.add(next);
+            // }
+        }
         }
         return free;
     }
